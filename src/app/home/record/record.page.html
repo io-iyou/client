@@ -40,4 +40,20 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
+  <ion-card *ngFor="let record of records">
+    <ion-card-header>
+      <ion-card-subtitle>{{record.time}}</ion-card-subtitle>
+      <ion-card-title>{{record.title}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-img *ngIf="record.image" [src]="record.image"></ion-img>
+      <video *ngIf="record.mp4" controls="controls" preload="metadata" autoplay="autoplay"
+        webkit-playsinline="webkit-playsinline" style="width:100%;">
+        <source [src]="record.mp4" type="video/mp4" />
+      </video>
+      {{record.content}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
