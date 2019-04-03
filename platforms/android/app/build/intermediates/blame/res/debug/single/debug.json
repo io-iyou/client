@@ -24,6 +24,10 @@
         "source": "/home/daniel/iyou/client/platforms/android/app/src/main/res/drawable-land-xxxhdpi/screen.png"
     },
     {
+        "merged": "/home/daniel/iyou/client/platforms/android/app/build/intermediates/res/merged/debug/xml_camera_provider_paths.xml.flat",
+        "source": "/home/daniel/iyou/client/platforms/android/app/src/main/res/xml/camera_provider_paths.xml"
+    },
+    {
         "merged": "/home/daniel/iyou/client/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_icon.png.flat",
         "source": "/home/daniel/iyou/client/platforms/android/app/src/main/res/mipmap-xhdpi/icon.png"
     },
