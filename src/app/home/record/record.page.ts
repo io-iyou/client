@@ -29,12 +29,11 @@ export class RecordPage {
 
   takePhoto() {
     this.camera.getPicture(this.options).then((imageData) => {
+      alert(imageData);
       var reader = new FileReader();
       reader.addEventListener("loadend", () => {
-        console.log("Successful file write: " + reader.result);
         this.media.setName(imageData)
-        this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));
-        alert(imageData);
+        this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
         alert(reader.result);
       });
       reader.readAsArrayBuffer(imageData);
