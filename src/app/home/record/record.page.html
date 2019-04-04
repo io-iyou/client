@@ -41,17 +41,17 @@
     </ion-fab-list>
   </ion-fab>
 
-  <ion-card *ngFor="let record of records">
+  <ion-card *ngFor="let article of articles">
     <ion-card-header>
-      <ion-card-subtitle>{{record.time}}</ion-card-subtitle>
-      <ion-card-title>{{record.title}}</ion-card-title>
+      <ion-card-subtitle>{{article.created?.seconds*1000 | date:'MM/dd H:mm'}}</ion-card-subtitle>
+      <ion-card-title>{{article.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-img *ngIf="record.image" [src]="record.image"></ion-img>
-      <video *ngIf="record.mp4" controls style="width:100%;">
-        <source [src]="record.mp4" type="video/mp4" />
+      <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
+      <video *ngIf="article.video" controls style="width:100%;">
+        <source [src]="article.video" type="video/mp4" />
       </video>
-      {{record.content}}
+      {{article.content}}
     </ion-card-content>
   </ion-card>
 </ion-content>
