@@ -47,7 +47,7 @@
       <ion-card-title>{{article.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
+      <ion-img *ngIf="article.image" [src]="uint8ArrayToBase64(article.image)"></ion-img>
       <video *ngIf="article.video" controls style="width:100%;">
         <source [src]="article.video" type="video/mp4" />
       </video>

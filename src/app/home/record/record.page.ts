@@ -69,7 +69,7 @@ export class RecordPage {
 
   }
 
-  urlBase64ToUint8Array(base64String): Uint8Array {
+  urlBase64ToUint8Array(base64String: string): Uint8Array {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
     const base64 = (base64String + padding)
       .replace(/\-/g, '+')
@@ -84,12 +84,12 @@ export class RecordPage {
     return outputArray;
   }
 
-  transformArrayBufferToBase64(buffer): string {
+  uint8ArrayToBase64(uint8Value: Uint8Array): string {
     var binary = '';
-    var bytes = new Uint8Array(buffer);
-    for (var len = bytes.byteLength, i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
+    //var bytes = new Uint8Array(buffer);
+    for (var len = uint8Value.byteLength, i = 0; i < len; i++) {
+      binary += String.fromCharCode(uint8Value[i]);
     }
-    return window.btoa(binary);
+    return "data:image/jpeg;base64," + window.btoa(binary);
   }
 }
