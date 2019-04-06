@@ -9,11 +9,11 @@ import { Article } from '../../../../sdk/article_pb'
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-  article: Article.AsObject = (new Article()).toObject();
+  article: Article.AsObject;
   //imageBase64: string;
 
   constructor(private navParams: NavParams) {
-    this.article = (<Article>this.navParams.get('article')).toObject();
+    this.article = this.navParams.get('article');
     //this.imageBase64 = (<Article>this.navParams.get('article')).getImage_asB64();
   }
 

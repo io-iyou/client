@@ -103,7 +103,7 @@ export class RecordPage {
   async writeArticle() {
     const modal = await this.popoverController.create({
       component: ArticleComponent,
-      componentProps: { article: this.article }
+      componentProps: { article: this.article.toObject() }
     });
     return await modal.present();
   }
