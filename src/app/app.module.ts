@@ -8,10 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ArticleComponent } from './home/record/article/article.component'
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, ArticleComponent],
+  entryComponents: [ArticleComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
