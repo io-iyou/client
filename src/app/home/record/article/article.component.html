@@ -8,7 +8,7 @@
     <ion-card-title>bbb</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-img *ngIf="imageBase64" [src]="imageBase64"></ion-img>
-   ddd
+    <ion-img *ngIf="article.image" [src]="uint8ArrayToBase64(article.image)"></ion-img>
+    ddd
   </ion-card-content>
 </ion-card>

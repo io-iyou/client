@@ -10,10 +10,11 @@ import { Article } from '../../../../sdk/article_pb'
 })
 export class ArticleComponent implements OnInit {
   article: Article.AsObject = (new Article()).toObject();
-  imageBase64: string;
+  //imageBase64: string;
 
   constructor(private navParams: NavParams) {
-    this.imageBase64 = this.uint8ArrayToBase64((<Article>this.navParams.get('article')).getImage_asU8());
+    this.article = (<Article>this.navParams.get('article')).toObject();
+    //this.imageBase64 = this.uint8ArrayToBase64((<Article>this.navParams.get('article')).getImage_asU8());
   }
 
   ngOnInit() { }

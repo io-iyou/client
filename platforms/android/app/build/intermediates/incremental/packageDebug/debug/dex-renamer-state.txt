@@ -1,4 +1,4 @@
-#Sat Apr 06 12:38:20 CST 2019
+#Sat Apr 06 14:25:22 CST 2019
 base.0=/home/daniel/iyou/client/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
