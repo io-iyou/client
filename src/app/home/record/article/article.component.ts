@@ -13,9 +13,18 @@ export class ArticleComponent implements OnInit {
   imageBase64: string;
 
   constructor(private navParams: NavParams) {
-    this.imageBase64= this.navParams.get('imageBase64');
-   }
+    this.imageBase64 = this.uint8ArrayToBase64((<Article>this.navParams.get('article')).getImage_asU8());
+  }
 
   ngOnInit() { }
 
+  uint8ArrayToBase64(uint8Value: Uint8Array): string {
+    var binary = '';
+    //var bytes = new Uint8Array(buffer);
+    for (var len = uint8Value.byteLength, i = 0; i < len; i++) {
+      binary += String.fromCharCode(uint8Value[i]);
+    }
+    return "data:image/jpeg;base64," + window.btoa(binary);
+  }
 }
+

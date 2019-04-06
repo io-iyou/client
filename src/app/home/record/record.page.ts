@@ -13,7 +13,7 @@ import { apiService } from '../../service/api.service';
 })
 export class RecordPage {
   article = new Article();
-  imageBase64: string;
+  //imageBase64: string;
   articles: Article.AsObject[] = [];
 
   constructor(
@@ -53,7 +53,7 @@ export class RecordPage {
       // var reader = new FileReader();
       //reader.addEventListener("loadend", () => {
       this.article.setImage(this.urlBase64ToUint8Array(imageData));
-      this.imageBase64 = "data:image/jpeg;base64," + imageData;
+      //this.imageBase64 = "data:image/jpeg;base64," + imageData;
       //this.media.setName(imageData)
       //this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
       //alert(reader.result);
@@ -103,7 +103,7 @@ export class RecordPage {
   async writeArticle() {
     const modal = await this.popoverController.create({
       component: ArticleComponent,
-      componentProps: { imageBase64: this.imageBase64 }
+      componentProps: { article: this.article }
     });
     return await modal.present();
   }
