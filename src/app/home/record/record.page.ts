@@ -11,7 +11,7 @@ import { apiService } from '../../service/api.service';
   templateUrl: './record.page.html',
   styleUrls: ['./record.page.scss'],
 })
-export class RecordPage {
+export class RecordPage implements OnInit {
   article = new Article();
   //imageBase64: string;
   articles: Article.AsObject[] = [];
@@ -24,6 +24,9 @@ export class RecordPage {
     //this.articles[1] = { "time": "04.01.2019", "title": "标题", "image": "http://img3.xiazaizhijia.com/walls/20160927/mid_dec5fdacc3059ca.jpg", "content": "abc test" }
     //this.articles[2] = { "time": "04.01.2019", "title": "标题", "mp4": "http://1254070582.vod2.myqcloud.com/2607b0c9vodtransgzp1254070582/a1cc8c7f5285890781256678829/v.f40.mp4", "content": "abc test" }
     //this.articles[3] = { "time": "04.01.2019", "title": "标题", "image": "https://goss3.vcg.com/creative/vcg/800/version23/VCG21400436589.jpg", "content": "abc test" }
+  }
+
+  ngOnInit() {
     var i = 0;
     let stream = apiService.articleClient.listByUser(this.article, apiService.metaData);
     stream.on('data', response => {
@@ -34,6 +37,7 @@ export class RecordPage {
     });
     stream.on('error', err => {
       console.log(err);
+      alert(JSON.stringify(err));
       //this.load();
     });
   }
@@ -64,7 +68,7 @@ export class RecordPage {
           alert(JSON.stringify(err));
           //utilService.alert(JSON.stringify(err));
         } else {
-          //this.ngOnInit();
+          alert(JSON.stringify(this.article.toObject()));
         }
       });
     }, (err) => {
