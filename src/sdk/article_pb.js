@@ -72,8 +72,8 @@ proto.dawn.Article.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     title: jspb.Message.getFieldWithDefault(msg, 2, ""),
     content: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    image: msg.getImage_asB64(),
-    video: msg.getVideo_asB64(),
+    image: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    video: jspb.Message.getFieldWithDefault(msg, 5, ""),
     owner: jspb.Message.getFieldWithDefault(msg, 6, ""),
     hiddensList: jspb.Message.getRepeatedField(msg, 7),
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -127,11 +127,11 @@ proto.dawn.Article.deserializeBinaryFromReader = function(msg, reader) {
       msg.setContent(value);
       break;
     case 4:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      var value = /** @type {string} */ (reader.readString());
       msg.setImage(value);
       break;
     case 5:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      var value = /** @type {string} */ (reader.readString());
       msg.setVideo(value);
       break;
     case 6:
@@ -203,16 +203,16 @@ proto.dawn.Article.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getImage_asU8();
+  f = message.getImage();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       4,
       f
     );
   }
-  f = message.getVideo_asU8();
+  f = message.getVideo();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       5,
       f
     );
@@ -292,7 +292,7 @@ proto.dawn.Article.prototype.setContent = function(value) {
 
 
 /**
- * optional bytes image = 4;
+ * optional string image = 4;
  * @return {string}
  */
 proto.dawn.Article.prototype.getImage = function() {
@@ -300,38 +300,14 @@ proto.dawn.Article.prototype.getImage = function() {
 };
 
 
-/**
- * optional bytes image = 4;
- * This is a type-conversion wrapper around `getImage()`
- * @return {string}
- */
-proto.dawn.Article.prototype.getImage_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getImage()));
-};
-
-
-/**
- * optional bytes image = 4;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getImage()`
- * @return {!Uint8Array}
- */
-proto.dawn.Article.prototype.getImage_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getImage()));
-};
-
-
-/** @param {!(string|Uint8Array)} value */
+/** @param {string} value */
 proto.dawn.Article.prototype.setImage = function(value) {
-  jspb.Message.setProto3BytesField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional bytes video = 5;
+ * optional string video = 5;
  * @return {string}
  */
 proto.dawn.Article.prototype.getVideo = function() {
@@ -339,33 +315,9 @@ proto.dawn.Article.prototype.getVideo = function() {
 };
 
 
-/**
- * optional bytes video = 5;
- * This is a type-conversion wrapper around `getVideo()`
- * @return {string}
- */
-proto.dawn.Article.prototype.getVideo_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getVideo()));
-};
-
-
-/**
- * optional bytes video = 5;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getVideo()`
- * @return {!Uint8Array}
- */
-proto.dawn.Article.prototype.getVideo_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getVideo()));
-};
-
-
-/** @param {!(string|Uint8Array)} value */
+/** @param {string} value */
 proto.dawn.Article.prototype.setVideo = function(value) {
-  jspb.Message.setProto3BytesField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
