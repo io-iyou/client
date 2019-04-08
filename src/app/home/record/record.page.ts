@@ -56,7 +56,7 @@ export class RecordPage implements OnInit {
       //alert(imageData);
       // var reader = new FileReader();
       //reader.addEventListener("loadend", () => {
-      this.article.setImage("data:image/jpeg;base64," + imageData)//this.urlBase64ToUint8Array(imageData));
+      //  this.article.setImage("data:image/jpeg;base64," + imageData)//this.urlBase64ToUint8Array(imageData));
       //this.imageBase64 = "data:image/jpeg;base64," + imageData;
       //this.media.setName(imageData)
       //this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
