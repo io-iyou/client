@@ -48,7 +48,7 @@ export class RecordPage implements OnInit {
   }
 
   options: CameraOptions = {
-    quality: 80,
+    quality: 20,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
@@ -61,7 +61,7 @@ export class RecordPage implements OnInit {
       //alert(imageData);
       // var reader = new FileReader();
       //reader.addEventListener("loadend", () => {
-      this.article.setImage(imageData)//this.urlBase64ToUint8Array(imageData));
+      this.article.setImage("data:image/jpeg;base64," + imageData);//this.urlBase64ToUint8Array(imageData));
       //this.upload(imageURI);
       //this.imageBase64 = "data:image/jpeg;base64," + imageData;
       //this.media.setName(imageData)

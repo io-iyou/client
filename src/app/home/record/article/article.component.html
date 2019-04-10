@@ -4,11 +4,11 @@
 
 <ion-card>
   <ion-card-header>
-    <ion-card-subtitle>aaa</ion-card-subtitle>
-    <ion-card-title>bbb</ion-card-title>
+    <ion-card-subtitle>{{article.title}}</ion-card-subtitle>
+    <ion-card-title>{{article.title}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-img id="abcdefg" *ngIf="article.image" [src]="article.image"></ion-img>
-    ddd
+    <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
+    {{article.content}}
   </ion-card-content>
 </ion-card>
