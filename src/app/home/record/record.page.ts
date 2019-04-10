@@ -19,7 +19,7 @@ export class RecordPage implements OnInit {
   constructor(
     private camera: Camera,
     private modalController: ModalController,
-    private popoverController: PopoverController) {
+   /* private popoverController: PopoverController*/) {
     //this.articles[0] = { "created": "04.01.2019", "title": "标题", "image": "http://i3.cqnews.net/xfsc/attachement/jpg/site82/20110720/b8ac6f24467b0f90c51d5e.jpg", "content": "abc test" }
     //this.articles[1] = { "time": "04.01.2019", "title": "标题", "image": "http://img3.xiazaizhijia.com/walls/20160927/mid_dec5fdacc3059ca.jpg", "content": "abc test" }
     //this.articles[2] = { "time": "04.01.2019", "title": "标题", "mp4": "http://1254070582.vod2.myqcloud.com/2607b0c9vodtransgzp1254070582/a1cc8c7f5285890781256678829/v.f40.mp4", "content": "abc test" }
@@ -46,8 +46,8 @@ export class RecordPage implements OnInit {
     quality: 90,
     correctOrientation: true,
     //allowEdit: true,
-    targetWidth: 300,
-    targetHeight: 300,
+    targetWidth: 500,
+    targetHeight: 500,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
@@ -68,25 +68,18 @@ export class RecordPage implements OnInit {
       //alert(reader.result);
       //});
       //reader.readAsArrayBuffer(imageData);
-      apiService.articleClient.add(this.article, apiService.metaData, (err: grpcWeb.Error, response: Article) => {
-        if (err) {
-          alert(JSON.stringify(err));
-          //utilService.alert(JSON.stringify(err));
-        } else {
-          alert(JSON.stringify(this.article.toObject()));
-          this.ngOnInit();
-        }
-      });
+
     }, (err) => {
       alert(err);
     });
   }
 
   async writeArticle() {
-    const modal = await this.popoverController.create({
+    const modal = await this.modalController.create({
       component: ArticleComponent,
       componentProps: { article: this.article.toObject() }
     });
-    return await modal.present();
+    await modal.present();
+    this.ngOnInit();
   }
 }
