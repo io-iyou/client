@@ -43,11 +43,11 @@ export class RecordPage implements OnInit {
   }
 
   options: CameraOptions = {
-    quality: 20,
+    quality: 40,
     correctOrientation: true,
     //allowEdit: true,
-    targetWidth: 200,
-    targetHeight: 200,
+    targetWidth: 100,
+    targetHeight: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
