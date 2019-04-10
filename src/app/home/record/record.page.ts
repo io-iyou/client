@@ -1,4 +1,7 @@
 import * as grpcWeb from 'grpc-web';
+import { finalize } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { File, FileEntry } from '@ionic-native/file/ngx';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { ArticleComponent } from './article/article.component'
@@ -17,7 +20,9 @@ export class RecordPage implements OnInit {
   articles: Article.AsObject[] = [];
 
   constructor(
+    private file: File,
     private camera: Camera,
+    private http: HttpClient,
     private modalController: ModalController,
     private popoverController: PopoverController) {
     //this.articles[0] = { "created": "04.01.2019", "title": "标题", "image": "http://i3.cqnews.net/xfsc/attachement/jpg/site82/20110720/b8ac6f24467b0f90c51d5e.jpg", "content": "abc test" }
@@ -44,7 +49,7 @@ export class RecordPage implements OnInit {
 
   options: CameraOptions = {
     quality: 80,
-    destinationType: this.camera.DestinationType.DATA_URL,
+    destinationType: this.camera.DestinationType.FILE_URI,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
@@ -52,11 +57,12 @@ export class RecordPage implements OnInit {
   takePhoto() {
     this.article.setTitle("测试");
     this.article.setContent("abc test");
-    this.camera.getPicture(this.options).then((imageData) => {
+    this.camera.getPicture(this.options).then((imageURI) => {
       //alert(imageData);
       // var reader = new FileReader();
       //reader.addEventListener("loadend", () => {
-      this.article.setImage("data:image/jpeg;base64," + imageData)//this.urlBase64ToUint8Array(imageData));
+      this.article.setImage(imageURI)//this.urlBase64ToUint8Array(imageData));
+      this.upload(imageURI);
       //this.imageBase64 = "data:image/jpeg;base64," + imageData;
       //this.media.setName(imageData)
       //this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
@@ -77,32 +83,44 @@ export class RecordPage implements OnInit {
     });
   }
 
-  upload() {
-
+  upload(fileURI: string) {
+    this.file.resolveLocalFilesystemUrl(fileURI)
+      .then(entry => {
+        (<FileEntry>entry).file(file => this.readFile(file))
+      })
+      .catch(err => {
+        alert(JSON.stringify(err));
+        // this.presentToast('Error while reading file.');
+      });
   }
 
-  urlBase64ToUint8Array(base64String: string): Uint8Array {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-      .replace(/\-/g, '+')
-      .replace(/_/g, '/');
-
-    const rawData = window.atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
-
-    for (let i = 0; i < rawData.length; ++i) {
-      outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-  }
-
-  uint8ArrayToBase64(uint8Value: Uint8Array): string {
-    var binary = '';
-    //var bytes = new Uint8Array(buffer);
-    for (var len = uint8Value.byteLength, i = 0; i < len; i++) {
-      binary += String.fromCharCode(uint8Value[i]);
-    }
-    return "data:image/jpeg;base64," + window.btoa(binary);
+  readFile(file: any) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const formData = new FormData();
+      const imgBlob = new Blob([reader.result], {
+        type: file.type
+      });
+      formData.append('file', imgBlob, file.name);
+      var img = <HTMLImageElement>document.getElementById('abcdefg');
+      //document.createElement("img")
+      img.src = window.URL.createObjectURL(imgBlob);
+      // this.uploadImageData(formData);
+      this.http.post("http://localhost:8888/upload.php", formData)
+        .pipe(
+          finalize(() => {
+            //loading.dismiss();
+          })
+        )
+        .subscribe(res => {
+          if (res['success']) {
+            // this.presentToast('File upload complete.')
+          } else {
+            //this.presentToast('File upload failed.')
+          }
+        });
+    };
+    reader.readAsArrayBuffer(file);
   }
 
   async writeArticle() {
