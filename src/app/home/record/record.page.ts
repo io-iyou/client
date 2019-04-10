@@ -55,7 +55,7 @@ export class RecordPage implements OnInit {
 
   takePhoto() {
     this.article.setTitle("测试");
-    this.article.setContent("abc test");
+    //this.article.setContent("abc test");
     this.camera.getPicture(this.options).then((imageData) => {
       //alert(imageData);
       // var reader = new FileReader();

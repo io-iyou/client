@@ -1,5 +1,6 @@
 <p>
   article works!
+  <ion-button (click)="add()">发表</ion-button>
 </p>
 
 <ion-card>
@@ -12,6 +13,6 @@
       <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="这一刻的想法..."></ion-textarea>
     </ion-item>
     <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
-    <ion-button (click)="add()">发表</ion-button>
+
   </ion-card-content>
 </ion-card>
