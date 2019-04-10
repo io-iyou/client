@@ -6,8 +6,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
-import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticleComponent } from './home/record/article/article.component'
@@ -17,7 +15,6 @@ import { ArticleComponent } from './home/record/article/article.component'
   entryComponents: [ArticleComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule
   ],
@@ -25,7 +22,6 @@ import { ArticleComponent } from './home/record/article/article.component'
     StatusBar,
     SplashScreen,
     Camera,
-    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,7 +1,4 @@
 import * as grpcWeb from 'grpc-web';
-import { finalize } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { File, FileEntry } from '@ionic-native/file/ngx';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { ArticleComponent } from './article/article.component'
@@ -20,9 +17,7 @@ export class RecordPage implements OnInit {
   articles: Article.AsObject[] = [];
 
   constructor(
-    private file: File,
     private camera: Camera,
-    private http: HttpClient,
     private modalController: ModalController,
     private popoverController: PopoverController) {
     //this.articles[0] = { "created": "04.01.2019", "title": "标题", "image": "http://i3.cqnews.net/xfsc/attachement/jpg/site82/20110720/b8ac6f24467b0f90c51d5e.jpg", "content": "abc test" }
@@ -49,6 +44,10 @@ export class RecordPage implements OnInit {
 
   options: CameraOptions = {
     quality: 20,
+    correctOrientation: true,
+    //allowEdit: true,
+    targetWidth: 512,
+    targetHeight: 512,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
@@ -81,46 +80,6 @@ export class RecordPage implements OnInit {
     }, (err) => {
       alert(err);
     });
-  }
-
-  upload(fileURI: string) {
-    this.file.resolveLocalFilesystemUrl(fileURI)
-      .then(entry => {
-        (<FileEntry>entry).file(file => this.readFile(file))
-      })
-      .catch(err => {
-        alert(JSON.stringify(err));
-        // this.presentToast('Error while reading file.');
-      });
-  }
-
-  readFile(file: any) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const formData = new FormData();
-      const imgBlob = new Blob([reader.result], {
-        type: file.type
-      });
-      formData.append('file', imgBlob, file.name);
-      var img = <HTMLImageElement>document.getElementById('abcdefg');
-      //document.createElement("img")
-      img.src = window.URL.createObjectURL(imgBlob);
-      // this.uploadImageData(formData);
-      this.http.post("http://localhost:8888/upload.php", formData)
-        .pipe(
-          finalize(() => {
-            //loading.dismiss();
-          })
-        )
-        .subscribe(res => {
-          if (res['success']) {
-            // this.presentToast('File upload complete.')
-          } else {
-            //this.presentToast('File upload failed.')
-          }
-        });
-    };
-    reader.readAsArrayBuffer(file);
   }
 
   async writeArticle() {
