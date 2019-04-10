@@ -49,7 +49,7 @@ export class RecordPage implements OnInit {
 
   options: CameraOptions = {
     quality: 80,
-    destinationType: this.camera.DestinationType.FILE_URI,
+    destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
@@ -57,12 +57,12 @@ export class RecordPage implements OnInit {
   takePhoto() {
     this.article.setTitle("测试");
     this.article.setContent("abc test");
-    this.camera.getPicture(this.options).then((imageURI) => {
+    this.camera.getPicture(this.options).then((imageData) => {
       //alert(imageData);
       // var reader = new FileReader();
       //reader.addEventListener("loadend", () => {
-      this.article.setImage(imageURI)//this.urlBase64ToUint8Array(imageData));
-      this.upload(imageURI);
+      this.article.setImage(imageData)//this.urlBase64ToUint8Array(imageData));
+      //this.upload(imageURI);
       //this.imageBase64 = "data:image/jpeg;base64," + imageData;
       //this.media.setName(imageData)
       //this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
