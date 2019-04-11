@@ -1,6 +1,5 @@
-import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ArticleComponent } from './article/article.component'
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Article } from '../../../sdk/article_pb'
@@ -46,8 +45,8 @@ export class RecordPage implements OnInit {
     quality: 90,
     correctOrientation: true,
     //allowEdit: true,
-    targetWidth: 500,
-    targetHeight: 500,
+    targetWidth: 600,
+    targetHeight: 600,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
@@ -68,7 +67,7 @@ export class RecordPage implements OnInit {
       //alert(reader.result);
       //});
       //reader.readAsArrayBuffer(imageData);
-
+      this.writeArticle();
     }, (err) => {
       alert(err);
     });

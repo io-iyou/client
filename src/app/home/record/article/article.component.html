@@ -1,18 +1,28 @@
-<p>
-  article works!
-  <ion-button (click)="add()">发表</ion-button>
-</p>
-
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>{{article.title}}</ion-card-subtitle>
-    <ion-card-title>{{article.title}}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <ion-item>
-      <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="这一刻的想法..."></ion-textarea>
-    </ion-item>
-    <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
-
-  </ion-card-content>
-</ion-card>
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="add()">
+        发表
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{article.title}}</ion-card-subtitle>
+      <ion-card-title>{{article.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="这一刻的想法..."></ion-textarea>
+      </ion-item>
+      <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
