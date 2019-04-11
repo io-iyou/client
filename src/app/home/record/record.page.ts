@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ArticleComponent } from './article/article.component'
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../sdk/article_pb'
 import { apiService } from '../../service/api.service';
+import { ArticleComponent } from './article/article.component'
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture/ngx';
+
 
 @Component({
   selector: 'app-record',
@@ -16,7 +17,7 @@ export class RecordPage implements OnInit {
   articles: Article.AsObject[] = [];
 
   constructor(
-    private camera: Camera,
+    private mediaCapture: MediaCapture,
     private modalController: ModalController,
    /* private popoverController: PopoverController*/) {
     //this.articles[0] = { "created": "04.01.2019", "title": "标题", "image": "http://i3.cqnews.net/xfsc/attachement/jpg/site82/20110720/b8ac6f24467b0f90c51d5e.jpg", "content": "abc test" }
@@ -41,36 +42,44 @@ export class RecordPage implements OnInit {
     });
   }
 
-  options: CameraOptions = {
-    quality: 90,
-    correctOrientation: true,
-    //allowEdit: true,
-    targetWidth: 600,
-    targetHeight: 600,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.VIDEO
-  }
+  // options: CameraOptions = {
+  //   quality: 90,
+  //   correctOrientation: true,
+  //   //allowEdit: true,
+  //   targetWidth: 600,
+  //   targetHeight: 600,
+  //   destinationType: this.camera.DestinationType.DATA_URL,
+  //   //encodingType: this.camera.EncodingType.JPEG,
+  //   mediaType: this.camera.MediaType.VIDEO
+  // }
 
   takePhoto() {
     this.article.setTitle("测试");
     //this.article.setContent("abc test");
-    this.camera.getPicture(this.options).then((imageData) => {
-      //alert(imageData);
-      // var reader = new FileReader();
-      //reader.addEventListener("loadend", () => {
-      this.article.setImage("data:image/jpeg;base64," + imageData);//this.urlBase64ToUint8Array(imageData));
-      //this.upload(imageURI);
-      //this.imageBase64 = "data:image/jpeg;base64," + imageData;
-      //this.media.setName(imageData)
-      //this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
-      //alert(reader.result);
-      //});
-      //reader.readAsArrayBuffer(imageData);
-      this.writeArticle();
-    }, (err) => {
-      alert(err);
-    });
+    let options: CaptureImageOptions = { limit: 3 }
+    this.mediaCapture.captureImage(options)
+      .then(
+        (data: MediaFile[]) =>
+          console.log(data),
+        (err: CaptureError) =>
+          console.error(err)
+      );
+    //this.camera.getPicture(this.options).then((imageData) => {
+    //alert(imageData);
+    // var reader = new FileReader();
+    //reader.addEventListener("loadend", () => {
+    // this.article.setImage("data:image/jpeg;base64," + imageData);//this.urlBase64ToUint8Array(imageData));
+    //this.upload(imageURI);
+    //this.imageBase64 = "data:image/jpeg;base64," + imageData;
+    //this.media.setName(imageData)
+    //this.media.setContent(new Uint8Array(<ArrayBuffer>reader.result));        
+    //alert(reader.result);
+    //});
+    //reader.readAsArrayBuffer(imageData);
+    // this.writeArticle();
+    //}, (err) => {
+    //alert(err);
+    //});
   }
 
   async writeArticle() {
