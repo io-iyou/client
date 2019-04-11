@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../sdk/article_pb'
 import { apiService } from '../../service/api.service';
 import { ArticleComponent } from './article/article.component'
-import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture/ngx';
+import {
+  MediaCapture, MediaFile, CaptureError,
+  CaptureImageOptions, CaptureVideoOptions
+} from '@ionic-native/media-capture/ngx';
 
 
 @Component({
@@ -56,7 +59,7 @@ export class RecordPage implements OnInit {
   takePhoto() {
     this.article.setTitle("测试");
     //this.article.setContent("abc test");
-    let options: CaptureImageOptions = { limit: 3 }
+    let options: CaptureImageOptions = { limit: 1 }
     this.mediaCapture.captureImage(options)
       .then(
         (data: MediaFile[]) =>
@@ -80,6 +83,17 @@ export class RecordPage implements OnInit {
     //}, (err) => {
     //alert(err);
     //});
+  }
+
+  takeVideo() {
+    let voptions: CaptureVideoOptions = { limit: 1 }
+    this.mediaCapture.captureVideo(voptions)
+      .then(
+        (data: MediaFile[]) =>
+          console.log(data),
+        (err: CaptureError) =>
+          console.error(err)
+      );
   }
 
   async writeArticle() {
