@@ -1,4 +1,4 @@
-import { File, FileEntry } from '@ionic-native/file/ngx';
+import { File, FileEntry, IFile } from '@ionic-native/file/ngx';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../sdk/article_pb'
@@ -65,15 +65,16 @@ export class RecordPage implements OnInit {
     this.mediaCapture.captureImage(options)
       .then(
         (data: MediaFile[]) => {
-          console.log(data),
-            this.file.resolveLocalFilesystemUrl(data[0].fullPath)
-              .then(entry => {
-                (<FileEntry>entry).file(file =>
-                  this.readFile(file))
-              })
-              .catch(err => {
-                //this.presentToast('Error while reading file.');
-              });
+          console.log(data);
+          alert(data[0].fullPath);
+          this.file.resolveLocalFilesystemUrl(data[0].fullPath)
+            .then(entry => {
+              (<FileEntry>entry).file(file =>
+                this.readFile(file));
+            })
+            .catch(err => {
+              //this.presentToast('Error while reading file.');
+            });
         },
         (err: CaptureError) =>
           console.error(err)
@@ -116,14 +117,15 @@ export class RecordPage implements OnInit {
     this.ngOnInit();
   }
 
-  readFile(file: Blob) {
+  readFile(file: IFile) {
+    alert(file.localURL);
     const reader = new FileReader();
     reader.onloadend = () => {
       //const formData = new FormData();
       // const imgBlob = new Blob([reader.result], {
       //   type: file.type
       // });
-      alert(reader.result);
+      //alert(reader.result);
       // formData.append('file', imgBlob, file.name);
       //this.uploadImageData(formData);
     };
