@@ -66,7 +66,9 @@ export class RecordPage implements OnInit {
       .then(
         (data: MediaFile[]) => {
           // console.log(data);
-          this.file.readAsDataURL(data[0].fullPath, '').then(value => {
+          var imagePath = data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1);
+          var imageName = data[0].fullPath.substr(data[0].fullPath.lastIndexOf('/') + 1);
+          this.file.readAsDataURL(imagePath, imageName).then(value => {
             this.article.setImage(value);
             this.writeArticle();
           }).catch(err => {
