@@ -118,7 +118,8 @@ export class RecordPage implements OnInit {
   }
 
   readFile(file: IFile) {
-    alert(file.localURL);
+    //alert(file.localURL);
+    alert(file.size);
     const reader = new FileReader();
     reader.onloadend = () => {
       //const formData = new FormData();
@@ -126,6 +127,7 @@ export class RecordPage implements OnInit {
       //   type: file.type
       // });
       //alert(reader.result);
+      this.article.setImage('' + reader.result);
       // formData.append('file', imgBlob, file.name);
       //this.uploadImageData(formData);
     };
