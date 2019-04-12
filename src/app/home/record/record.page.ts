@@ -69,6 +69,8 @@ export class RecordPage implements OnInit {
           this.file.readAsDataURL(data[0].fullPath, '').then(value => {
             this.article.setImage(value);
             this.writeArticle();
+          }).catch(err => {
+            alert('error:' + err);
           });
           // this.file.resolveLocalFilesystemUrl(data[0].fullPath)
           //   .then(entry => {
