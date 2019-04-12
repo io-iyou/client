@@ -70,7 +70,7 @@ export class RecordPage implements OnInit {
             this.article.setImage(value);
             this.writeArticle();
           }).catch(err => {
-            alert('error:' + err);
+            alert('error:' + JSON.stringify(err));
           });
           // this.file.resolveLocalFilesystemUrl(data[0].fullPath)
           //   .then(entry => {
