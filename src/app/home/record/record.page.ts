@@ -66,22 +66,12 @@ export class RecordPage implements OnInit {
       .then(
         (data: MediaFile[]) => {
           // console.log(data);
-          var imagePath = data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1);
-          var imageName = data[0].fullPath.substr(data[0].fullPath.lastIndexOf('/') + 1);
-          this.file.readAsDataURL(imagePath, imageName).then(value => {
-            this.article.setImage(value);
+          this.file.readAsDataURL(data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1), data[0].name).then(result => {
+            this.article.setImage(result);
             this.writeArticle();
           }).catch(err => {
             alert('error:' + JSON.stringify(err));
           });
-          // this.file.resolveLocalFilesystemUrl(data[0].fullPath)
-          //   .then(entry => {
-          //     (<FileEntry>entry).file(file =>
-          //       this.readFile(file));
-          //   })
-          //   .catch(err => {
-          //     //this.presentToast('Error while reading file.');
-          //   });
         },
         (err: CaptureError) =>
           console.error(err)
@@ -122,21 +112,5 @@ export class RecordPage implements OnInit {
     });
     await modal.present();
     this.ngOnInit();
-  }
-
-  readFile(file: IFile) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      //const formData = new FormData();
-      // const imgBlob = new Blob([reader.result], {
-      //   type: file.type
-      // });
-      //alert(reader.result);
-      this.article.setImage('' + reader.result);
-      // formData.append('file', imgBlob, file.name);
-      //this.uploadImageData(formData);
-      this.writeArticle();
-    };
-    reader.readAsDataURL(file);
   }
 }
