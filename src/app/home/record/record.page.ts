@@ -65,15 +65,19 @@ export class RecordPage implements OnInit {
     this.mediaCapture.captureImage(options)
       .then(
         (data: MediaFile[]) => {
-         // console.log(data);
-          this.file.resolveLocalFilesystemUrl(data[0].fullPath)
-            .then(entry => {
-              (<FileEntry>entry).file(file =>
-                this.readFile(file));
-            })
-            .catch(err => {
-              //this.presentToast('Error while reading file.');
-            });
+          // console.log(data);
+          this.file.readAsDataURL(data[0].fullPath, '').then(value => {
+            this.article.setImage(value);
+            this.writeArticle();
+          });
+          // this.file.resolveLocalFilesystemUrl(data[0].fullPath)
+          //   .then(entry => {
+          //     (<FileEntry>entry).file(file =>
+          //       this.readFile(file));
+          //   })
+          //   .catch(err => {
+          //     //this.presentToast('Error while reading file.');
+          //   });
         },
         (err: CaptureError) =>
           console.error(err)
