@@ -65,8 +65,7 @@ export class RecordPage implements OnInit {
     this.mediaCapture.captureImage(options)
       .then(
         (data: MediaFile[]) => {
-          console.log(data);
-          alert(data[0].fullPath);
+         // console.log(data);
           this.file.resolveLocalFilesystemUrl(data[0].fullPath)
             .then(entry => {
               (<FileEntry>entry).file(file =>
@@ -118,8 +117,6 @@ export class RecordPage implements OnInit {
   }
 
   readFile(file: IFile) {
-    //alert(file.localURL);
-    alert(file.size);
     const reader = new FileReader();
     reader.onloadend = () => {
       //const formData = new FormData();
@@ -130,6 +127,7 @@ export class RecordPage implements OnInit {
       this.article.setImage('' + reader.result);
       // formData.append('file', imgBlob, file.name);
       //this.uploadImageData(formData);
+      this.writeArticle();
     };
     reader.readAsDataURL(file);
   }
