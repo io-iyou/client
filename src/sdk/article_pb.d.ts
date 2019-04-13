@@ -27,10 +27,10 @@ export class Article extends jspb.Message {
   getOwner(): string;
   setOwner(value: string): void;
 
-  getHiddensList(): Array<number>;
-  setHiddensList(value: Array<number>): void;
-  clearHiddensList(): void;
-  addHiddens(value: number, index?: number): void;
+  getVisiblesList(): Array<number>;
+  setVisiblesList(value: Array<number>): void;
+  clearVisiblesList(): void;
+  addVisibles(value: number, index?: number): void;
 
   getCreated(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreated(value?: google_protobuf_timestamp_pb.Timestamp): void;
@@ -56,7 +56,7 @@ export namespace Article {
     imagesList: Array<string>,
     videosList: Array<string>,
     owner: string,
-    hiddensList: Array<number>,
+    visiblesList: Array<number>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     labelsMap: Array<[string, string]>,
   }

@@ -75,7 +75,7 @@ proto.dawn.Article.toObject = function(includeInstance, msg) {
     imagesList: jspb.Message.getRepeatedField(msg, 4),
     videosList: jspb.Message.getRepeatedField(msg, 5),
     owner: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    hiddensList: jspb.Message.getRepeatedField(msg, 7),
+    visiblesList: jspb.Message.getRepeatedField(msg, 7),
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
   };
@@ -140,7 +140,7 @@ proto.dawn.Article.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {!Array.<number>} */ (reader.readPackedInt32());
-      msg.setHiddensList(value);
+      msg.setVisiblesList(value);
       break;
     case 8:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -224,7 +224,7 @@ proto.dawn.Article.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getHiddensList();
+  f = message.getVisiblesList();
   if (f.length > 0) {
     writer.writePackedInt32(
       7,
@@ -365,16 +365,16 @@ proto.dawn.Article.prototype.setOwner = function(value) {
 
 
 /**
- * repeated int32 hiddens = 7;
+ * repeated int32 visibles = 7;
  * @return {!Array.<number>}
  */
-proto.dawn.Article.prototype.getHiddensList = function() {
+proto.dawn.Article.prototype.getVisiblesList = function() {
   return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
 /** @param {!Array.<number>} value */
-proto.dawn.Article.prototype.setHiddensList = function(value) {
+proto.dawn.Article.prototype.setVisiblesList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
 
@@ -383,13 +383,13 @@ proto.dawn.Article.prototype.setHiddensList = function(value) {
  * @param {!number} value
  * @param {number=} opt_index
  */
-proto.dawn.Article.prototype.addHiddens = function(value, opt_index) {
+proto.dawn.Article.prototype.addVisibles = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
 
-proto.dawn.Article.prototype.clearHiddensList = function() {
-  this.setHiddensList([]);
+proto.dawn.Article.prototype.clearVisiblesList = function() {
+  this.setVisiblesList([]);
 };
 
 
