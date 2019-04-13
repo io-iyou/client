@@ -72,8 +72,12 @@ export class RecordPage implements OnInit {
             img.src = result;
             img.onload = () => {
               var canvas = document.createElement('canvas');
+              let width = img.width / 5
+              let height = img.height / 5
+              canvas.width = width;
+              canvas.height = height
               var ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, img.width / 5, img.height / 5);
+              ctx.drawImage(img, 0, 0, width, height);
               var base64 = canvas.toDataURL('image/jpeg', 0.7);
               this.article.setImage(base64);
               this.writeArticle();
