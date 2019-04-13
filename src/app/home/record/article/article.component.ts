@@ -12,13 +12,11 @@ import { apiService } from '../../../service/api.service';
 })
 export class ArticleComponent implements OnInit {
   article: Article.AsObject;
-  //imageBase64: string;
 
   constructor(
     private navParams: NavParams,
     private modalController: ModalController) {
     this.article = this.navParams.get('article');
-    //this.imageBase64 = (<Article>this.navParams.get('article')).getImage_asB64();
   }
 
   ngOnInit() { }
