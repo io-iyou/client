@@ -67,8 +67,17 @@ export class RecordPage implements OnInit {
         (data: MediaFile[]) => {
           // console.log(data);
           this.file.readAsDataURL(data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1), data[0].name).then(result => {
-            this.article.setImage(result);
-            this.writeArticle();
+            // this.article.setImage(result);
+            var img = new Image();
+            img.src = result;
+            img.onload = () => {
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, img.width / 5, img.height / 5);
+              var base64 = canvas.toDataURL('image/jpeg', 0.7);
+              this.article.setImage(base64);
+              this.writeArticle();
+            }
           }).catch(err => {
             alert('error:' + JSON.stringify(err));
           });
