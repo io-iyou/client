@@ -14,11 +14,15 @@ export class Article extends jspb.Message {
   getContent(): string;
   setContent(value: string): void;
 
-  getImage(): string;
-  setImage(value: string): void;
+  getImagesList(): Array<string>;
+  setImagesList(value: Array<string>): void;
+  clearImagesList(): void;
+  addImages(value: string, index?: number): void;
 
-  getVideo(): string;
-  setVideo(value: string): void;
+  getVideosList(): Array<string>;
+  setVideosList(value: Array<string>): void;
+  clearVideosList(): void;
+  addVideos(value: string, index?: number): void;
 
   getOwner(): string;
   setOwner(value: string): void;
@@ -49,8 +53,8 @@ export namespace Article {
     id: string,
     title: string,
     content: string,
-    image: string,
-    video: string,
+    imagesList: Array<string>,
+    videosList: Array<string>,
     owner: string,
     hiddensList: Array<number>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,

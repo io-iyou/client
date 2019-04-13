@@ -22,7 +22,7 @@
       <ion-item>
         <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="这一刻的想法..."></ion-textarea>
       </ion-item>
-      <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
+      <ion-img *ngIf="article.imagesList" [src]="article.imagesList[0]"></ion-img>
     </ion-card-content>
   </ion-card>
 </ion-content>

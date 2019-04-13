@@ -38,7 +38,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.dawn.Article.repeatedFields_ = [7];
+proto.dawn.Article.repeatedFields_ = [4,5,7];
 
 
 
@@ -72,8 +72,8 @@ proto.dawn.Article.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     title: jspb.Message.getFieldWithDefault(msg, 2, ""),
     content: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    image: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    video: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    imagesList: jspb.Message.getRepeatedField(msg, 4),
+    videosList: jspb.Message.getRepeatedField(msg, 5),
     owner: jspb.Message.getFieldWithDefault(msg, 6, ""),
     hiddensList: jspb.Message.getRepeatedField(msg, 7),
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -128,11 +128,11 @@ proto.dawn.Article.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setImage(value);
+      msg.addImages(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setVideo(value);
+      msg.addVideos(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -203,16 +203,16 @@ proto.dawn.Article.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getImage();
+  f = message.getImagesList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       4,
       f
     );
   }
-  f = message.getVideo();
+  f = message.getVideosList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       5,
       f
     );
@@ -292,32 +292,60 @@ proto.dawn.Article.prototype.setContent = function(value) {
 
 
 /**
- * optional string image = 4;
- * @return {string}
+ * repeated string images = 4;
+ * @return {!Array.<string>}
  */
-proto.dawn.Article.prototype.getImage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.dawn.Article.prototype.getImagesList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
-/** @param {string} value */
-proto.dawn.Article.prototype.setImage = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+/** @param {!Array.<string>} value */
+proto.dawn.Article.prototype.setImagesList = function(value) {
+  jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
- * optional string video = 5;
- * @return {string}
+ * @param {!string} value
+ * @param {number=} opt_index
  */
-proto.dawn.Article.prototype.getVideo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.dawn.Article.prototype.addImages = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
-/** @param {string} value */
-proto.dawn.Article.prototype.setVideo = function(value) {
-  jspb.Message.setProto3StringField(this, 5, value);
+proto.dawn.Article.prototype.clearImagesList = function() {
+  this.setImagesList([]);
+};
+
+
+/**
+ * repeated string videos = 5;
+ * @return {!Array.<string>}
+ */
+proto.dawn.Article.prototype.getVideosList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.dawn.Article.prototype.setVideosList = function(value) {
+  jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.dawn.Article.prototype.addVideos = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+proto.dawn.Article.prototype.clearVideosList = function() {
+  this.setVideosList([]);
 };
 
 

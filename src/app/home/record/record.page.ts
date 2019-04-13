@@ -41,7 +41,6 @@ export class RecordPage implements OnInit {
       //this.orders = this.orders.slice(0, i);
     });
     stream.on('error', err => {
-      console.log(err);
       alert(JSON.stringify(err));
       //this.load();
     });
@@ -78,8 +77,7 @@ export class RecordPage implements OnInit {
               canvas.height = height
               var ctx = canvas.getContext('2d');
               ctx.drawImage(img, 0, 0, width, height);
-              var base64 = canvas.toDataURL('image/jpeg', 0.7);
-              this.article.setImage(base64);
+              this.article.addImages(canvas.toDataURL('image/jpeg', 0.7));
               this.writeArticle();
             }
           }).catch(err => {

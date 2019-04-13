@@ -47,9 +47,9 @@
       <ion-card-title>{{article.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-img *ngIf="article.image" [src]="article.image"></ion-img>
-      <video *ngIf="article.video" controls style="width:100%;">
-        <source [src]="article.video" type="video/mp4" />
+      <ion-img *ngIf="article.imagesList" [src]="article.imagesList[0]"></ion-img>
+      <video *ngIf="article.videosList" controls style="width:100%;">
+        <source [src]="article.videosList[0]" type="video/mp4" />
       </video>
       {{article.content}}
     </ion-card-content>
