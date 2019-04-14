@@ -49,9 +49,9 @@
     <ion-card-content>
       {{article.content}}
       <ion-grid>
-        <ion-row *ngIf="article.imagesList.length > 0" style="max-height:200px;">
+        <ion-row *ngIf="article.imagesList.length > 0">
           <ion-col *ngFor="let image of article.imagesList">
-            <ion-img [src]="image"></ion-img>
+            <img [src]="image" />
           </ion-col>
         </ion-row>
         <ion-row *ngIf="article.videosList.length > 0">
