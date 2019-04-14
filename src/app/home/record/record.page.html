@@ -47,11 +47,21 @@
       <ion-card-title>{{article.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-img *ngIf="article.imagesList.length > 0" [src]="article.imagesList[0]"></ion-img>
-      <video *ngIf="article.videosList.length > 0" controls style="width:100%;">
-        <source [src]="article.videosList[0]" type="video/mp4" />
-      </video>
       {{article.content}}
+      <ion-grid>
+        <ion-row *ngIf="article.imagesList.length > 0">
+          <ion-col *ngFor="let image of article.imagesList">
+            <ion-img [src]="image"></ion-img>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="article.videosList.length > 0">
+          <ion-col *ngFor="let video of article.videosList">
+            <video controls style="width:100%;">
+              <source [src]="video" type="video/mp4" />
+            </video>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>
