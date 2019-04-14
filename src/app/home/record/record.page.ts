@@ -65,24 +65,24 @@ export class RecordPage implements OnInit {
       .then(
         (data: MediaFile[]) => {
           // console.log(data);
-          //this.file.readAsDataURL(data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1), data[0].name).then(result => {
-          // this.article.setImage(result);
-          var img = new Image();
-          img.src = data[0].fullPath;//result;
-          img.onload = () => {
-            var canvas = document.createElement('canvas');
-            let width = img.width / 5
-            let height = img.height / 5
-            canvas.width = width;
-            canvas.height = height
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            this.article.addImages(canvas.toDataURL('image/jpeg', 0.7));
-            this.writeArticle();
-          }
-          // }).catch(err => {
-          //   alert('error:' + JSON.stringify(err));
-          // });
+          this.file.readAsDataURL(data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1), data[0].name).then(result => {
+            // this.article.setImage(result);
+            var img = new Image();
+            img.src = result;
+            img.onload = () => {
+              var canvas = document.createElement('canvas');
+              let width = img.width / 5
+              let height = img.height / 5
+              canvas.width = width;
+              canvas.height = height
+              var ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+              this.article.addImages(canvas.toDataURL('image/jpeg', 0.7));
+              this.writeArticle();
+            }
+          }).catch(err => {
+            alert('error:' + JSON.stringify(err));
+          });
         },
         (err: CaptureError) =>
           console.error(err)
