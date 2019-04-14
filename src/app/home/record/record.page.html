@@ -49,9 +49,9 @@
     <ion-card-content>
       {{article.content}}
       <ion-grid>
-        <ion-row *ngIf="article.imagesList.length > 0" class="ion-float-start">
-          <ion-col *ngFor="let image of article.imagesList" class="ion-float-start">
-            <ion-img [src]="image" style="height: 160px;"></ion-img>
+        <ion-row *ngIf="article.imagesList.length > 0" style="float: left;">
+          <ion-col *ngFor="let image of article.imagesList" style="float: left;">
+            <ion-img [src]="image" style="height: 160px;float: left;"></ion-img>
           </ion-col>
         </ion-row>
         <ion-row *ngIf="article.videosList.length > 0">
