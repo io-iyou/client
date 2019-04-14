@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button expand="block" (click)="add()" color="warning">
+      <ion-button expand="block" (click)="add()">
         发表
       </ion-button>
     </ion-buttons>
@@ -22,7 +22,16 @@
       <ion-item>
         <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="这一刻的想法..."></ion-textarea>
       </ion-item>
-      <ion-img *ngIf="article.imagesList.length > 0" [src]="article.imagesList[0]"></ion-img>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-img *ngIf="article.imagesList.length > 0" [src]="article.imagesList[0]"></ion-img>
+          </ion-col>
+          <ion-col>
+            (+)Add image
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>
