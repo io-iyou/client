@@ -7,6 +7,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticleComponent } from './home/record/article/article.component'
@@ -24,6 +25,7 @@ import { ArticleComponent } from './home/record/article/article.component'
     StatusBar,
     SplashScreen,
     MediaCapture,
+    Camera,
     File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
