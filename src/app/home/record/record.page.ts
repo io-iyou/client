@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../sdk/article_pb'
 import { apiService } from '../../service/api.service';
 import { ArticleComponent } from './article/article.component'
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {
   MediaCapture, MediaFile, CaptureError,
   CaptureImageOptions, CaptureVideoOptions
@@ -22,6 +23,7 @@ export class RecordPage implements OnInit {
 
   constructor(
     private file: File,
+    private camera: Camera,
     private mediaCapture: MediaCapture,
     private modalController: ModalController,
    /* private popoverController: PopoverController*/) {
@@ -59,34 +61,62 @@ export class RecordPage implements OnInit {
 
   takePhoto() {
     this.article.setTitle("记录");
-    //this.article.setContent("abc test");
-    let options: CaptureImageOptions = { limit: 1 }
-    this.mediaCapture.captureImage(options)
-      .then(
-        (data: MediaFile[]) => {
-          // console.log(data);
-          this.file.readAsDataURL(data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1), data[0].name).then(result => {
-            // this.article.setImage(result);
-            var img = new Image();
-            img.src = result;
-            img.onload = () => {
-              var canvas = document.createElement('canvas');
-              let width = img.width / 5
-              let height = img.height / 5
-              canvas.width = width;
-              canvas.height = height
-              var ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, width, height);
-              this.article.addImages(canvas.toDataURL('image/jpeg', 0.7));
-              this.writeArticle();
-            }
-          }).catch(err => {
-            alert('error:' + JSON.stringify(err));
-          });
-        },
-        (err: CaptureError) =>
-          console.error(err)
-      );
+    const options: CameraOptions = {
+      quality: 100,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      var img = new Image();
+      img.src = base64Image;
+      img.onload = () => {
+        var canvas = document.createElement('canvas');
+        let width = img.width / 5
+        let height = img.height / 5
+        canvas.width = width;
+        canvas.height = height
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        this.article.addImages(canvas.toDataURL('image/jpeg', 0.7));
+        this.writeArticle();
+      }
+    }, (err) => {
+      // Handle error
+    });
+
+    /*
+        let moptions: CaptureImageOptions = { limit: 1 }
+        this.mediaCapture.captureImage(moptions)
+          .then(
+            (data: MediaFile[]) => {
+              // console.log(data);
+              this.file.readAsDataURL(data[0].fullPath.substr(0, data[0].fullPath.lastIndexOf('/') + 1), data[0].name).then(result => {
+                // this.article.setImage(result);
+                var img = new Image();
+                img.src = result;
+                img.onload = () => {
+                  var canvas = document.createElement('canvas');
+                  let width = img.width / 5
+                  let height = img.height / 5
+                  canvas.width = width;
+                  canvas.height = height
+                  var ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0, width, height);
+                  this.article.addImages(canvas.toDataURL('image/jpeg', 0.7));
+                  this.writeArticle();
+                }
+              }).catch(err => {
+                alert('error:' + JSON.stringify(err));
+              });
+            },
+            (err: CaptureError) =>
+              console.error(err)
+          );*/
     //this.camera.getPicture(this.options).then((imageData) => {
     //alert(imageData);
     // var reader = new FileReader();
