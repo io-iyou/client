@@ -50,7 +50,7 @@
       {{article.content}}
       <ion-slides [options]="slideOpts">
         <ion-slide *ngFor="let image of article.imagesList">
-          <ion-img [src]="image" (click)="viewPhoto(image)" style="padding-right: 10px">
+          <ion-img [src]="image" (click)="viewPhoto(image)" style="padding-right: 5px">
           </ion-img>
         </ion-slide>
       </ion-slides>
