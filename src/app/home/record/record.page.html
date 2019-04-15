@@ -48,9 +48,9 @@
     </ion-card-header>
     <ion-card-content>
       {{article.content}}
-      <ion-slides pager="true" [options]="slideOpts">
+      <ion-slides [options]="slideOpts">
         <ion-slide *ngFor="let image of article.imagesList">
-          <ion-img [src]="image" (click)="viewPhoto(image)">
+          <ion-img [src]="image" (click)="viewPhoto(image)" style="padding-right: 10px">
           </ion-img>
         </ion-slide>
       </ion-slides>
