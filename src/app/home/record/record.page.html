@@ -48,10 +48,18 @@
     </ion-card-header>
     <ion-card-content>
       {{article.content}}
-      <ion-grid>
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let image of article.imagesList">
+          <ion-img [src]="image" (click)="viewPhoto(image)">
+          </ion-img>
+        </ion-slide>
+      </ion-slides>
+      <!-- <ion-grid>
         <ion-row *ngIf="article.imagesList.length > 0">
-          <ion-col *ngFor="let image of article.imagesList">
-            <img [src]="image" (click)="viewPhoto(image)" style="width: auto;height: auto;max-height: 160px;">
+          <ion-col>
+            <div *ngFor="let image of article.imagesList">
+              <img [src]="image" (click)="viewPhoto(image)" style="width: auto;height: auto;max-height: 160px;">
+            </div>
           </ion-col>
         </ion-row>
         <ion-row *ngIf="article.videosList.length > 0">
@@ -61,7 +69,7 @@
             </video>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
     </ion-card-content>
   </ion-card>
 </ion-content>

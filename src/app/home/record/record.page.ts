@@ -20,6 +20,11 @@ import {
 export class RecordPage implements OnInit {
   article = new Article();
   articles: Article.AsObject[] = [];
+  slideOpts = {
+    slidesPerView: 3,
+    effect: 'flip'
+  };
+
 
   constructor(
     private file: File,
