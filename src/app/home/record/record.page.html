@@ -51,7 +51,7 @@
       <ion-grid>
         <ion-row *ngIf="article.imagesList.length > 0" align-items-start>
           <ion-col *ngFor="let image of article.imagesList">
-            <img [src]="image" style="max-height: 160px;max-width: 160px">
+            <img [src]="image" style="width: auto;height: auto;max-height: 160px;">
           </ion-col>
         </ion-row>
         <ion-row *ngIf="article.videosList.length > 0">
