@@ -2,6 +2,7 @@ import { File, FileEntry, IFile } from '@ionic-native/file/ngx';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../sdk/article_pb'
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { apiService } from '../../service/api.service';
 import { ArticleComponent } from './article/article.component'
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -18,12 +19,12 @@ import {
 })
 export class RecordPage implements OnInit {
   article = new Article();
-  //imageBase64: string;
   articles: Article.AsObject[] = [];
 
   constructor(
     private file: File,
     private camera: Camera,
+    private photoViewer: PhotoViewer,
     private mediaCapture: MediaCapture,
     private modalController: ModalController,
    /* private popoverController: PopoverController*/) {
@@ -153,5 +154,9 @@ export class RecordPage implements OnInit {
     });
     await modal.present();
     this.ngOnInit();
+  }
+
+  viewPhoto(imageData: string) {
+    this.photoViewer.show(imageData);
   }
 }

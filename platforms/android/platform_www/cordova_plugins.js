@@ -312,6 +312,14 @@ module.exports = [
     "clobbers": [
       "CameraPopoverHandle"
     ]
+  },
+  {
+    "id": "com-sarriaroman-photoviewer.PhotoViewer",
+    "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+    "pluginId": "com-sarriaroman-photoviewer",
+    "clobbers": [
+      "PhotoViewer"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -325,7 +333,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-file": "6.0.1",
   "cordova-plugin-media-capture": "3.0.2",
-  "cordova-plugin-camera": "4.0.3"
+  "cordova-plugin-camera": "4.0.3",
+  "com-sarriaroman-photoviewer": "1.2.1"
 };
 // BOTTOM OF METADATA
 });
