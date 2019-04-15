@@ -49,7 +49,7 @@
     <ion-card-content>
       {{article.content}}
       <ion-grid>
-        <ion-row *ngIf="article.imagesList.length > 0" align-items-start>
+        <ion-row *ngIf="article.imagesList.length > 0">
           <ion-col *ngFor="let image of article.imagesList">
             <img [src]="image" style="width: auto;height: auto;max-height: 160px;">
           </ion-col>

@@ -20,7 +20,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="这一刻的想法..."></ion-textarea>
+        <ion-textarea [(ngModel)]="article.content" rows="6" placeholder="此时此刻，生活的点点滴滴..."></ion-textarea>
       </ion-item>
       <ion-grid>
         <ion-row *ngIf="article.imagesList.length > 0">
@@ -34,6 +34,14 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+      <ion-item>
+        <ion-label>所在位置</ion-label>
+        <ion-icon name="pin"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>谁可以看</ion-label>
+        <ion-icon name="contacts"></ion-icon>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -27,10 +27,15 @@ export class Article extends jspb.Message {
   getOwner(): string;
   setOwner(value: string): void;
 
-  getVisiblesList(): Array<number>;
-  setVisiblesList(value: Array<number>): void;
-  clearVisiblesList(): void;
-  addVisibles(value: number, index?: number): void;
+  getLocation(): Location | undefined;
+  setLocation(value?: Location): void;
+  hasLocation(): boolean;
+  clearLocation(): void;
+
+  getAccessesList(): Array<number>;
+  setAccessesList(value: Array<number>): void;
+  clearAccessesList(): void;
+  addAccesses(value: number, index?: number): void;
 
   getCreated(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreated(value?: google_protobuf_timestamp_pb.Timestamp): void;
@@ -56,9 +61,36 @@ export namespace Article {
     imagesList: Array<string>,
     videosList: Array<string>,
     owner: string,
-    visiblesList: Array<number>,
+    location?: Location.AsObject,
+    accessesList: Array<number>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     labelsMap: Array<[string, string]>,
+  }
+}
+
+export class Location extends jspb.Message {
+  getLatitude(): number;
+  setLatitude(value: number): void;
+
+  getLongitude(): number;
+  setLongitude(value: number): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Location.AsObject;
+  static toObject(includeInstance: boolean, msg: Location): Location.AsObject;
+  static serializeBinaryToWriter(message: Location, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Location;
+  static deserializeBinaryFromReader(message: Location, reader: jspb.BinaryReader): Location;
+}
+
+export namespace Location {
+  export type AsObject = {
+    latitude: number,
+    longitude: number,
+    name: string,
   }
 }
 
