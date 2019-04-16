@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ArticlesClient } from '../../sdk/article_grpc_web_pb';
+import { UsersClient } from '../../sdk/user_grpc_web_pb';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class ApiService {
   constructor() { }
 
   articleClient = new ArticlesClient(environment.apiUrl);
+  userClient = new UsersClient(environment.apiUrl);
 
   metaData = { 'authorization-token': 'admin' };
 }

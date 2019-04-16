@@ -78,8 +78,8 @@ proto.dawn.Article.toObject = function(includeInstance, msg) {
     owner: jspb.Message.getFieldWithDefault(msg, 6, ""),
     location: (f = msg.getLocation()) && proto.dawn.Location.toObject(includeInstance, f),
     accessesList: jspb.Message.getRepeatedField(msg, 8),
-    created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -150,15 +150,15 @@ proto.dawn.Article.deserializeBinaryFromReader = function(msg, reader) {
       msg.setAccessesList(value);
       break;
     case 9:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setCreated(value);
-      break;
-    case 10:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 10:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreated(value);
       break;
     default:
       reader.skipField();
@@ -246,17 +246,17 @@ proto.dawn.Article.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getLabelsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
   f = message.getCreated();
   if (f != null) {
     writer.writeMessage(
-      9,
+      10,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
-  }
-  f = message.getLabelsMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(10, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -439,18 +439,36 @@ proto.dawn.Article.prototype.clearAccessesList = function() {
 
 
 /**
- * optional google.protobuf.Timestamp created = 9;
+ * map<string, string> labels = 9;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.dawn.Article.prototype.getLabelsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
+      null));
+};
+
+
+proto.dawn.Article.prototype.clearLabelsMap = function() {
+  this.getLabelsMap().clear();
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created = 10;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.dawn.Article.prototype.getCreated = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 10));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.dawn.Article.prototype.setCreated = function(value) {
-  jspb.Message.setWrapperField(this, 9, value);
+  jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -464,25 +482,7 @@ proto.dawn.Article.prototype.clearCreated = function() {
  * @return {!boolean}
  */
 proto.dawn.Article.prototype.hasCreated = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * map<string, string> labels = 10;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,string>}
- */
-proto.dawn.Article.prototype.getLabelsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (
-      jspb.Message.getMapField(this, 10, opt_noLazyCreate,
-      null));
-};
-
-
-proto.dawn.Article.prototype.clearLabelsMap = function() {
-  this.getLabelsMap().clear();
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

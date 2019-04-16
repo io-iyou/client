@@ -37,13 +37,13 @@ export class Article extends jspb.Message {
   clearAccessesList(): void;
   addAccesses(value: number, index?: number): void;
 
+  getLabelsMap(): jspb.Map<string, string>;
+  clearLabelsMap(): void;
+
   getCreated(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreated(value?: google_protobuf_timestamp_pb.Timestamp): void;
   hasCreated(): boolean;
   clearCreated(): void;
-
-  getLabelsMap(): jspb.Map<string, string>;
-  clearLabelsMap(): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Article.AsObject;
@@ -63,8 +63,8 @@ export namespace Article {
     owner: string,
     location?: Location.AsObject,
     accessesList: Array<number>,
-    created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     labelsMap: Array<[string, string]>,
+    created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

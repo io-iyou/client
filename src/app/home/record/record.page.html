@@ -50,26 +50,15 @@
       {{article.content}}
       <ion-slides [options]="slideOpts">
         <ion-slide *ngFor="let image of article.imagesList">
-          <ion-img [src]="image" (click)="viewPhoto(image)" style="padding-right: 5px">
+          <ion-img [src]="image" (click)="viewPhoto(image)" style="padding: 2px;">
           </ion-img>
         </ion-slide>
+        <ion-slide *ngFor="let video of article.videosList">
+          <video controls style="width:100%;">
+            <source [src]="video" type="video/mp4" />
+          </video>
+        </ion-slide>
       </ion-slides>
-      <!-- <ion-grid>
-        <ion-row *ngIf="article.imagesList.length > 0">
-          <ion-col>
-            <div *ngFor="let image of article.imagesList">
-              <img [src]="image" (click)="viewPhoto(image)" style="width: auto;height: auto;max-height: 160px;">
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="article.videosList.length > 0">
-          <ion-col *ngFor="let video of article.videosList">
-            <video controls style="width:100%;">
-              <source [src]="video" type="video/mp4" />
-            </video>
-          </ion-col>
-        </ion-row>
-      </ion-grid> -->
     </ion-card-content>
   </ion-card>
 </ion-content>
