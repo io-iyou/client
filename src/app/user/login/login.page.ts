@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
       } else {
         let username = response.getName();
         // this.events.publish('user:login', username);
-        // utilService.setUser(response.toObject());
+        apiService.setUser(response.toObject());
         this.router.navigateByUrl('/home');
       }
       console.log(response);
