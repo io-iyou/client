@@ -22,18 +22,9 @@ export class SendPage implements OnInit {
 
   ionViewWillEnter() {
     this.peerUserId = utilService.userId;
-    this.messages = apiService.msgCache.get(this.peerUserId)
-    this.events.subscribe(this.peerUserId, (msg: Message.AsObject) => {
-      console.log("event:", msg);
-      if (this.messages == null) {
-        this.messages = [];
-      }
-      this.messages.push(msg)
-    });
-  }
-
-  ionViewWillLeave() {
-    this.events.unsubscribe(this.peerUserId);
+    if (apiService.msgCache.get(this.peerUserId) != null) {
+      this.messages = apiService.msgCache.get(this.peerUserId);
+    }
   }
 
   send() {
@@ -49,7 +40,7 @@ export class SendPage implements OnInit {
         alert(err.code + ':' + err.message);
       }
     });
-    this.events.publish(tsMessage.toObject().to, tsMessage.toObject());
+    this.messages.push(tsMessage.toObject());
     this.message.content = '';
   }
 }

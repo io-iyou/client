@@ -1,12 +1,22 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>{{peerUserId}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div *ngFor="let msg of messages">
-    <p>{{msg.content}}---{{msg.created?.seconds*1000 | date:'MM/dd H:mm'}}</p>
+    <ion-item *ngIf="msg.to==peerUserId" slot="start">
+      <ion-badge>{{msg.content}}---{{msg.created?.seconds*1000 | date:'MM/dd H:mm'}}</ion-badge>
+    </ion-item>
+    <ion-item *ngIf="msg.from==peerUserId" slot="end">
+      <ion-badge color="success">{{msg.content}}---{{msg.created?.seconds*1000 | date:'MM/dd H:mm'}}</ion-badge>
+    </ion-item>
   </div>
 </ion-content>
 

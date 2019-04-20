@@ -13,9 +13,7 @@ import { apiService, utilService } from '../../service/api.service';
 export class SessionPage implements OnInit {
   msgCache = apiService.msgCache;
 
-  constructor(
-    private router: Router,
-    private events: Events, ) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     if (!apiService.getUser().id) {
@@ -32,11 +30,10 @@ export class SessionPage implements OnInit {
         this.msgCache.set(msg.from, []);
       }
       this.msgCache.get(msg.from).push(msg)
-      this.events.publish(msg.from, msg);
     });
     stream.on('error', err => {
       alert(JSON.stringify(err));
-      //this.load();
+      this.ngOnInit();
     });
   }
 
@@ -44,5 +41,4 @@ export class SessionPage implements OnInit {
     utilService.userId = userId;
     this.router.navigateByUrl('send');
   }
-
 }
