@@ -14,24 +14,33 @@ import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 export class SendPage implements OnInit {
   messages: Message.AsObject[] = []
   message = (new Message).toObject();
-  userId = utilService.userId;
+  peerUserId: string;
 
-  constructor(private events: Events) {
-    this.userId = utilService.userId
-  }
+  constructor(private events: Events) { }
 
-  ngOnInit() {
-    this.messages = apiService.msgCache.get(this.userId)
-    this.events.subscribe(this.userId, (msg: Message.AsObject) => {
+  ngOnInit() { }
+
+  ionViewWillEnter() {
+    this.peerUserId = utilService.userId;
+    this.messages = apiService.msgCache.get(this.peerUserId)
+    this.events.subscribe(this.peerUserId, (msg: Message.AsObject) => {
+      console.log("event:", msg);
+      if (this.messages == null) {
+        this.messages = [];
+      }
       this.messages.push(msg)
     });
+  }
+
+  ionViewWillLeave() {
+    this.events.unsubscribe(this.peerUserId);
   }
 
   send() {
     let tsMessage = new Message();
     tsMessage.setContent(this.message.content);
     tsMessage.setFrom(apiService.getUser().id);
-    tsMessage.setTo(this.userId);
+    tsMessage.setTo(this.peerUserId);
     let tt = new Timestamp();
     tt.fromDate(new Date())
     tsMessage.setCreated(tt);
@@ -39,7 +48,8 @@ export class SendPage implements OnInit {
       if (err) {
         alert(err.code + ':' + err.message);
       }
-    })
+    });
+    this.events.publish(tsMessage.toObject().to, tsMessage.toObject());
+    this.message.content = '';
   }
-
 }

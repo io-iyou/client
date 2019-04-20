@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{userId}}</ion-title>
+    <ion-title>{{peerUserId}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div *ngFor="let msg of messages">
-    <p> {{msg.content}}---{{msg.created}}</p>
+    <p>{{msg.content}}---{{msg.created?.seconds*1000 | date:'MM/dd H:mm'}}</p>
   </div>
 </ion-content>
 

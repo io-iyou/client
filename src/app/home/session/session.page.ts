@@ -11,9 +11,7 @@ import { apiService, utilService } from '../../service/api.service';
   styleUrls: ['./session.page.scss'],
 })
 export class SessionPage implements OnInit {
-  // users: User.AsObject[] = [];
-  // messages: Message.AsObject[] = []
-  msgCache = apiService.msgCache;//new Map<string, Message.AsObject[]>();
+  msgCache = apiService.msgCache;
 
   constructor(
     private router: Router,
@@ -31,10 +29,8 @@ export class SessionPage implements OnInit {
       let msg = response.toObject();
       console.log(msg);
       if (this.msgCache.get(msg.from) == null) {
-        // apiService.msgCache.set(msg.from, []);
         this.msgCache.set(msg.from, []);
       }
-      // apiService.msgCache.get(msg.from).push(msg);
       this.msgCache.get(msg.from).push(msg)
       this.events.publish(msg.from, msg);
     });
