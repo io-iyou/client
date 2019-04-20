@@ -29,6 +29,7 @@ export class SessionPage implements OnInit {
     let stream = apiService.messageClient.receive(tsUser, apiService.metaData);
     stream.on('data', response => {
       let msg = response.toObject();
+      console.log(msg);
       if (this.msgCache.get(msg.from) == null) {
         // apiService.msgCache.set(msg.from, []);
         this.msgCache.set(msg.from, []);

@@ -14,12 +14,15 @@ import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 export class SendPage implements OnInit {
   messages: Message.AsObject[] = []
   message = (new Message).toObject();
+  userId = utilService.userId;
 
-  constructor(private events: Events) { }
+  constructor(private events: Events) {
+    this.userId = utilService.userId
+  }
 
   ngOnInit() {
-    this.messages = apiService.msgCache.get(utilService.userId)
-    this.events.subscribe(utilService.userId, (msg: Message.AsObject) => {
+    this.messages = apiService.msgCache.get(this.userId)
+    this.events.subscribe(this.userId, (msg: Message.AsObject) => {
       this.messages.push(msg)
     });
   }
@@ -28,7 +31,7 @@ export class SendPage implements OnInit {
     let tsMessage = new Message();
     tsMessage.setContent(this.message.content);
     tsMessage.setFrom(apiService.getUser().id);
-    tsMessage.setTo(utilService.userId);
+    tsMessage.setTo(this.userId);
     let tt = new Timestamp();
     tt.fromDate(new Date())
     tsMessage.setCreated(tt);

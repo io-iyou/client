@@ -1,6 +1,7 @@
 import { User } from '../../../sdk/user_pb';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { apiService } from '../../service/api.service';
+import { apiService, utilService } from '../../service/api.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,7 +11,7 @@ import { apiService } from '../../service/api.service';
 export class ContactPage implements OnInit {
   users: User.AsObject[] = []
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     var i = 0;
@@ -27,5 +28,8 @@ export class ContactPage implements OnInit {
     });
   }
 
-
+  gotoSend(userId: string) {
+    utilService.userId = userId;
+    this.router.navigateByUrl('send');
+  }
 }
