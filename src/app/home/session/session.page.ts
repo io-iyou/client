@@ -1,7 +1,5 @@
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../../../sdk/user_pb';
-import { Events } from '@ionic/angular';
-import { Message } from '../../../sdk/message_pb';
 import { Component, OnInit } from '@angular/core';
 import { apiService, utilService } from '../../service/api.service';
 
@@ -11,7 +9,7 @@ import { apiService, utilService } from '../../service/api.service';
   styleUrls: ['./session.page.scss'],
 })
 export class SessionPage implements OnInit {
-  msgCache = apiService.msgCache;
+  msgCache = utilService.msgCache;
 
   constructor(private router: Router) { }
 
@@ -20,12 +18,12 @@ export class SessionPage implements OnInit {
   }
 
   load() {
-    if (!apiService.getUser().id) {
+    if (!utilService.getUser()) {
       alert('请登录');
       return
     }
     let tsUser = new User();
-    tsUser.setId(apiService.getUser().id)
+    tsUser.setId(utilService.getUser().id)
     let stream = apiService.messageClient.receive(tsUser, apiService.metaData);
     stream.on('data', response => {
       let msg = response.toObject();

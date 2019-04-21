@@ -1,6 +1,5 @@
 import * as grpcWeb from 'grpc-web';
 import { Events } from '@ionic/angular';
-import { User } from '../../../../sdk/user_pb';
 import { Message } from '../../../../sdk/message_pb';
 import { Component, OnInit } from '@angular/core';
 import { apiService, utilService } from '../../../service/api.service';
@@ -22,16 +21,16 @@ export class SendPage implements OnInit {
 
   ionViewWillEnter() {
     this.peerUserId = utilService.userId;
-    if (apiService.msgCache.get(this.peerUserId) == null) {
-      apiService.msgCache.set(this.peerUserId, []);
+    if (utilService.msgCache.get(this.peerUserId) == null) {
+      utilService.msgCache.set(this.peerUserId, []);
     }
-    this.messages = apiService.msgCache.get(this.peerUserId);
+    this.messages = utilService.msgCache.get(this.peerUserId);
   }
 
   send() {
     let tsMessage = new Message();
     tsMessage.setContent(this.message.content);
-    tsMessage.setFrom(apiService.getUser().id);
+    tsMessage.setFrom(utilService.getUser().id);
     tsMessage.setTo(this.peerUserId);
     let tt = new Timestamp();
     tt.fromDate(new Date())

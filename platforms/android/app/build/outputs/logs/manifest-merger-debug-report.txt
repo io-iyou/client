@@ -11,16 +11,16 @@ INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidMan
 	android:name
 		ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:12:127-180
 manifest
-ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
 MERGED from [com.commit451:PhotoView:1.2.4] /home/daniel/.gradle/caches/transforms-1/files-1.1/PhotoView-1.2.4.aar/67701913341f042197a2ea5bc8b82217/AndroidManifest.xml:2:1-12:12
 MERGED from [com.android.support:support-v4:24.1.1] /home/daniel/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/c3e09f806800411739efe295cb91ee59/AndroidManifest.xml:17:1-27:12
 MERGED from [:CordovaLib] /home/daniel/iyou/client/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:20:1-27:12
-INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
 	package
 		ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:2:98-123
 		INJECTED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml
@@ -133,6 +133,18 @@ uses-permission#android.permission.READ_EXTERNAL_STORAGE
 ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:21:5-80
 	android:name
 		ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:21:22-77
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:22:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:23:22-76
+uses-feature#android.hardware.location.gps
+ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:24:5-66
+	android:name
+		ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:24:19-63
 meta-data#android.support.FILE_PROVIDER_PATHS
 ADDED from /home/daniel/iyou/client/platforms/android/app/src/main/AndroidManifest.xml:13:13-123
 	android:resource

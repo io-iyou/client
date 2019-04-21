@@ -3,7 +3,7 @@ import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { User } from '../../../sdk/user_pb';
 import { Component, OnInit } from '@angular/core';
-import { apiService } from '../../service/api.service';
+import { apiService, utilService } from '../../service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +17,7 @@ export class LoginPage implements OnInit {
     private events: Events,
     private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   login() {
     const tsUser = new User();
@@ -29,7 +28,7 @@ export class LoginPage implements OnInit {
         console.log(err.code, err.message);
         alert('手机号或密码不正确.');
       } else {
-        apiService.setUser(response.toObject());
+        utilService.setUser(response.toObject());
         this.events.publish('user:login', response.getName());
         this.router.navigateByUrl('/home');
       }

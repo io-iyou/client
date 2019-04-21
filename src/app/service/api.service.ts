@@ -10,22 +10,8 @@ import { MessagesClient } from '../../sdk/message_grpc_web_pb';
   providedIn: 'root'
 })
 export class ApiService {
-  msgCache = new Map<string, Message.AsObject[]>();
 
   constructor() { }
-
-  getUser(): User.AsObject {
-    let localUser = window.localStorage.getItem('user');
-    if (!localUser) {
-      //window.alert('请登录!')
-      return (new User).toObject()
-    }
-    return JSON.parse(localUser)
-  }
-
-  setUser(user: User.AsObject) {
-    window.localStorage.setItem('user', JSON.stringify(user));
-  }
 
   articleClient = new ArticlesClient(environment.apiUrl);
   userClient = new UsersClient(environment.apiUrl);
@@ -36,8 +22,22 @@ export class ApiService {
 
 export class UtilService {
   userId = '';
+  msgCache = new Map<string, Message.AsObject[]>();
 
   constructor() { }
+
+  getUser(): User.AsObject {
+    let localUser = window.localStorage.getItem('user');
+    if (!localUser) {
+      //window.alert('请登录!')
+      return null//(new User).toObject()
+    }
+    return JSON.parse(localUser)
+  }
+
+  setUser(user: User.AsObject) {
+    window.localStorage.setItem('user', JSON.stringify(user));
+  }
 }
 
 export const apiService = new ApiService();

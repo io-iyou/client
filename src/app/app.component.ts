@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { apiService } from './service/api.service';
+import { utilService } from './service/api.service';
 
 @Component({
   selector: 'app-root',
@@ -54,8 +54,8 @@ export class AppComponent {
     this.events.subscribe('user:login', (username) => {
       this.username = username;
     });
-    if (apiService.getUser.name) {
-      this.username = apiService.getUser().name;
+    if (utilService.getUser()) {
+      this.username = utilService.getUser().name;
     }
   }
 }
