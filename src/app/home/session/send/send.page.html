@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let msg of messages">
+  <ion-list *ngFor="let msg of messages">
     <ion-item *ngIf="msg.to==peerUserId" slot="start">
       <ion-badge>{{msg.content}}---{{msg.created?.seconds*1000 | date:'MM/dd H:mm'}}</ion-badge>
     </ion-item>
     <ion-item *ngIf="msg.from==peerUserId" slot="end">
       <ion-badge color="success">{{msg.content}}---{{msg.created?.seconds*1000 | date:'MM/dd H:mm'}}</ion-badge>
     </ion-item>
-  </div>
+  </ion-list>
 </ion-content>
 
 <ion-footer>

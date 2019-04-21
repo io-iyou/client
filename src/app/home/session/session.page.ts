@@ -16,6 +16,10 @@ export class SessionPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.load();
+  }
+
+  load() {
     if (!apiService.getUser().id) {
       alert('请登录');
       return
@@ -32,8 +36,8 @@ export class SessionPage implements OnInit {
       this.msgCache.get(msg.from).push(msg)
     });
     stream.on('error', err => {
-      alert(JSON.stringify(err));
-      this.ngOnInit();
+      console.log(err);
+      this.load();
     });
   }
 

@@ -12,7 +12,7 @@ import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
   styleUrls: ['./send.page.scss'],
 })
 export class SendPage implements OnInit {
-  messages: Message.AsObject[] = []
+  messages: Message.AsObject[];
   message = (new Message).toObject();
   peerUserId: string;
 
@@ -22,9 +22,10 @@ export class SendPage implements OnInit {
 
   ionViewWillEnter() {
     this.peerUserId = utilService.userId;
-    if (apiService.msgCache.get(this.peerUserId) != null) {
-      this.messages = apiService.msgCache.get(this.peerUserId);
+    if (apiService.msgCache.get(this.peerUserId) == null) {
+      apiService.msgCache.set(this.peerUserId, []);
     }
+    this.messages = apiService.msgCache.get(this.peerUserId);
   }
 
   send() {
