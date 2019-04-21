@@ -29,8 +29,8 @@ export class LoginPage implements OnInit {
         console.log(err.code, err.message);
         alert('手机号或密码不正确.');
       } else {
-        this.events.publish('user:login', response.getName());
         apiService.setUser(response.toObject());
+        this.events.publish('user:login', response.getName());
         this.router.navigateByUrl('/home');
       }
       console.log(response);
