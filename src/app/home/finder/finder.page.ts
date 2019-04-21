@@ -19,7 +19,7 @@ export class FinderPage implements OnInit {
       //resizeEnable: true,
       //rotateEnable: true,
       //pitchEnable: true,
-      zoom: 11,
+      zoom: 10,
       //pitch: 80,
       //rotation: -15,
       viewMode: '2D',//开启3D视图,默认为关闭
@@ -28,7 +28,7 @@ export class FinderPage implements OnInit {
       expandZoomRange: true,
       //zooms: [3, 20],
       //center: [116.333926, 39.997245]
-      mapStyle: 'amap://styles/macaron',
+      mapStyle: 'amap://styles/light',
     });
     AMap.plugin('AMap.ToolBar', () => {
       var toolbar = new AMap.ToolBar();
