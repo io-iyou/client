@@ -1,6 +1,16 @@
 <ion-header>
   <ion-toolbar color="warning">
-    <ion-title>Contact</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="gotoGroup()">
+        <ion-icon slot="icon-only" name="people"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-title>联系人</ion-title> -->
+    <ion-buttons slot="end">
+      <ion-button (click)="gotoGroup()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

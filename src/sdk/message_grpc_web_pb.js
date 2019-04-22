@@ -197,5 +197,110 @@ proto.dawn.MessagesPromiseClient.prototype.receive =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.dawn.TopicRequest,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_Messages_Publish = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /** @param {!proto.dawn.TopicRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.dawn.TopicRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.dawn.MessagesClient.prototype.publish =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/dawn.Messages/Publish',
+      request,
+      metadata || {},
+      methodInfo_Messages_Publish,
+      callback);
+};
+
+
+/**
+ * @param {!proto.dawn.TopicRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     A native promise that resolves to the response
+ */
+proto.dawn.MessagesPromiseClient.prototype.publish =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/dawn.Messages/Publish',
+      request,
+      metadata || {},
+      methodInfo_Messages_Publish);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.dawn.TopicRequest,
+ *   !proto.dawn.Message>}
+ */
+const methodInfo_Messages_Subscribe = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.dawn.Message,
+  /** @param {!proto.dawn.TopicRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.dawn.Message.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.dawn.TopicRequest} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.dawn.Message>}
+ *     The XHR Node Readable Stream
+ */
+proto.dawn.MessagesClient.prototype.subscribe =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/dawn.Messages/Subscribe',
+      request,
+      metadata || {},
+      methodInfo_Messages_Subscribe);
+};
+
+
+/**
+ * @param {!proto.dawn.TopicRequest} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.dawn.Message>}
+ *     The XHR Node Readable Stream
+ */
+proto.dawn.MessagesPromiseClient.prototype.subscribe =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/dawn.Messages/Subscribe',
+      request,
+      metadata || {},
+      methodInfo_Messages_Subscribe);
+};
+
+
 module.exports = proto.dawn;
 

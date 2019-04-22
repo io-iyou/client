@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'session', loadChildren: './home/session/session.module#SessionPageModule' },
   { path: 'login', loadChildren: './user/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
-  { path: 'send', loadChildren: './home/session/send/send.module#SendPageModule' }
+  { path: 'send', loadChildren: './home/session/send/send.module#SendPageModule' },
+  { path: 'group', loadChildren: './home/contact/group/group.module#GroupPageModule' }
 ];
 
 @NgModule({

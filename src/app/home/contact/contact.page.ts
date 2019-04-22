@@ -32,4 +32,8 @@ export class ContactPage implements OnInit {
     utilService.userId = userId;
     this.router.navigateByUrl('send');
   }
+
+  gotoGroup(){
+    this.router.navigateByUrl('group');
+  }
 }

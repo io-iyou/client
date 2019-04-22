@@ -56,3 +56,27 @@ export namespace Message {
   }
 }
 
+export class TopicRequest extends jspb.Message {
+  getTopic(): string;
+  setTopic(value: string): void;
+
+  getMsg(): Message | undefined;
+  setMsg(value?: Message): void;
+  hasMsg(): boolean;
+  clearMsg(): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TopicRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TopicRequest): TopicRequest.AsObject;
+  static serializeBinaryToWriter(message: TopicRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TopicRequest;
+  static deserializeBinaryFromReader(message: TopicRequest, reader: jspb.BinaryReader): TopicRequest;
+}
+
+export namespace TopicRequest {
+  export type AsObject = {
+    topic: string,
+    msg?: Message.AsObject,
+  }
+}
+
