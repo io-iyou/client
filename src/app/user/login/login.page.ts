@@ -15,11 +15,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private events: Events,
-    private router: Router) {
-    if (utilService.getUser()) {
-      this.router.navigateByUrl('/home');
-    }
-  }
+    private router: Router) { }
 
   ngOnInit() { }
 

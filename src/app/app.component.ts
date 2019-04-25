@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Platform, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -35,12 +36,17 @@ export class AppComponent {
 
   constructor(
     private events: Events,
+    private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
     this.initializeApp();
     this.listenForLoginEvents();
+    
+    if (utilService.getUser()) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
   initializeApp() {
