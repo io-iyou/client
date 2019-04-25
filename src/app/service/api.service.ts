@@ -4,6 +4,7 @@ import { Message } from '../../sdk/message_pb';
 import { environment } from '../../environments/environment';
 import { ArticlesClient } from '../../sdk/article_grpc_web_pb';
 import { UsersClient } from '../../sdk/user_grpc_web_pb';
+import { GroupsClient } from '../../sdk/group_grpc_web_pb';
 import { MessagesClient } from '../../sdk/message_grpc_web_pb';
 
 @Injectable({
@@ -15,6 +16,7 @@ export class ApiService {
 
   articleClient = new ArticlesClient(environment.apiUrl);
   userClient = new UsersClient(environment.apiUrl);
+  groupClient = new GroupsClient(environment.apiUrl);
   messageClient = new MessagesClient(environment.apiUrl);
 
   metaData = { 'authorization-token': 'admin' };

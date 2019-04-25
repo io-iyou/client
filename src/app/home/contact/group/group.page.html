@@ -7,7 +7,7 @@
     </ion-buttons>
     <ion-title>建群</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="add()">
         <ion-icon slot="icon-only" name="done-all"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -21,7 +21,7 @@
         <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
       </ion-avatar>
       <ion-label>{{user.name}}</ion-label>
-      <ion-checkbox slot="end" color="warning"></ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="user.isChecked" color="warning"></ion-checkbox>
     </ion-item>
   </ion-list>
 </ion-content>

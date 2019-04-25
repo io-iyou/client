@@ -1,4 +1,5 @@
 import { User } from '../../../sdk/user_pb';
+import { Group } from '../../../sdk/group_pb';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { apiService, utilService } from '../../service/api.service';
@@ -9,18 +10,24 @@ import { apiService, utilService } from '../../service/api.service';
   styleUrls: ['./contact.page.scss'],
 })
 export class ContactPage implements OnInit {
-  users: User.AsObject[] = []
+  users: User.AsObject[] = [];
+  groups: Group.AsObject[] = [];
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    var i = 0;
+    let stream1 = apiService.groupClient.list((new Group), apiService.metaData);
+    stream1.on('data', response => {
+      this.groups.push(response.toObject());
+    });
+    stream1.on('error', err => {
+      alert(JSON.stringify(err));
+      //this.load();
+    });
+
     let stream = apiService.userClient.list((new User), apiService.metaData);
     stream.on('data', response => {
-      this.users[i] = response.toObject();
-      //this.loadDistance(this.orders[i]);
-      i++;
-      //this.orders = this.orders.slice(0, i);
+      this.users.push(response.toObject());
     });
     stream.on('error', err => {
       alert(JSON.stringify(err));
@@ -33,7 +40,7 @@ export class ContactPage implements OnInit {
     this.router.navigateByUrl('send');
   }
 
-  gotoGroup(){
+  gotoGroup() {
     this.router.navigateByUrl('group');
   }
 }
