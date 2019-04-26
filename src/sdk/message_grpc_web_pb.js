@@ -200,12 +200,12 @@ proto.dawn.MessagesPromiseClient.prototype.receive =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.dawn.TopicRequest,
+ *   !proto.dawn.Topic,
  *   !proto.google.protobuf.Empty>}
  */
 const methodInfo_Messages_Publish = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
-  /** @param {!proto.dawn.TopicRequest} request */
+  /** @param {!proto.dawn.Topic} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -214,7 +214,7 @@ const methodInfo_Messages_Publish = new grpc.web.AbstractClientBase.MethodInfo(
 
 
 /**
- * @param {!proto.dawn.TopicRequest} request The
+ * @param {!proto.dawn.Topic} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -235,7 +235,7 @@ proto.dawn.MessagesClient.prototype.publish =
 
 
 /**
- * @param {!proto.dawn.TopicRequest} request The
+ * @param {!proto.dawn.Topic} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -255,24 +255,24 @@ proto.dawn.MessagesPromiseClient.prototype.publish =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.dawn.TopicRequest,
- *   !proto.dawn.Message>}
+ *   !proto.dawn.Topic,
+ *   !proto.dawn.Topic>}
  */
 const methodInfo_Messages_Subscribe = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.dawn.Message,
-  /** @param {!proto.dawn.TopicRequest} request */
+  proto.dawn.Topic,
+  /** @param {!proto.dawn.Topic} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.dawn.Message.deserializeBinary
+  proto.dawn.Topic.deserializeBinary
 );
 
 
 /**
- * @param {!proto.dawn.TopicRequest} request The request proto
+ * @param {!proto.dawn.Topic} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.dawn.Message>}
+ * @return {!grpc.web.ClientReadableStream<!proto.dawn.Topic>}
  *     The XHR Node Readable Stream
  */
 proto.dawn.MessagesClient.prototype.subscribe =
@@ -286,10 +286,10 @@ proto.dawn.MessagesClient.prototype.subscribe =
 
 
 /**
- * @param {!proto.dawn.TopicRequest} request The request proto
+ * @param {!proto.dawn.Topic} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.dawn.Message>}
+ * @return {!grpc.web.ClientReadableStream<!proto.dawn.Topic>}
  *     The XHR Node Readable Stream
  */
 proto.dawn.MessagesPromiseClient.prototype.subscribe =

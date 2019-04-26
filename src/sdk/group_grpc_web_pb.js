@@ -258,12 +258,12 @@ proto.dawn.GroupsPromiseClient.prototype.update =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.dawn.Group,
+ *   !proto.google.protobuf.Empty,
  *   !proto.dawn.Group>}
  */
 const methodInfo_Groups_List = new grpc.web.AbstractClientBase.MethodInfo(
   proto.dawn.Group,
-  /** @param {!proto.dawn.Group} request */
+  /** @param {!proto.google.protobuf.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -272,7 +272,7 @@ const methodInfo_Groups_List = new grpc.web.AbstractClientBase.MethodInfo(
 
 
 /**
- * @param {!proto.dawn.Group} request The request proto
+ * @param {!proto.google.protobuf.Empty} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.dawn.Group>}
@@ -289,7 +289,7 @@ proto.dawn.GroupsClient.prototype.list =
 
 
 /**
- * @param {!proto.dawn.Group} request The request proto
+ * @param {!proto.google.protobuf.Empty} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.dawn.Group>}

@@ -6,7 +6,7 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 
 import {
   Message,
-  TopicRequest} from './message_pb';
+  Topic} from './message_pb';
 
 export class MessagesClient {
   constructor (hostname: string,
@@ -26,16 +26,16 @@ export class MessagesClient {
   ): grpcWeb.ClientReadableStream<Message>;
 
   publish(
-    request: TopicRequest,
+    request: Topic,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   subscribe(
-    request: TopicRequest,
+    request: Topic,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<Message>;
+  ): grpcWeb.ClientReadableStream<Topic>;
 
 }
 
@@ -55,14 +55,14 @@ export class MessagesPromiseClient {
   ): grpcWeb.ClientReadableStream<Message>;
 
   publish(
-    request: TopicRequest,
+    request: Topic,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
   subscribe(
-    request: TopicRequest,
+    request: Topic,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<Message>;
+  ): grpcWeb.ClientReadableStream<Topic>;
 
 }
 

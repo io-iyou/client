@@ -32,7 +32,7 @@ export class GroupsClient {
   ): grpcWeb.ClientReadableStream<Group>;
 
   list(
-    request: Group,
+    request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Group>;
 
@@ -66,7 +66,7 @@ export class GroupsPromiseClient {
   ): Promise<Group>;
 
   list(
-    request: Group,
+    request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Group>;
 
