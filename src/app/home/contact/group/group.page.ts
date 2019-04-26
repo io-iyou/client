@@ -1,4 +1,5 @@
 import * as grpcWeb from 'grpc-web';
+import { Router } from '@angular/router';
 import { User } from '../../../../sdk/user_pb';
 import { Group } from '../../../../sdk/group_pb';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { apiService } from '../../../service/api.service';
 export class GroupPage implements OnInit {
   users: User.AsObject[] = []
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     let stream = apiService.userClient.list((new User), apiService.metaData);
@@ -32,7 +33,6 @@ export class GroupPage implements OnInit {
     for (let j = 0; j < this.users.length; j++) {
       let user = this.users[j];
       if (user['isChecked']) {
-        //alert(user.name);
         tsGroup.addMembers(user.id);
       }
     }
@@ -40,6 +40,7 @@ export class GroupPage implements OnInit {
       if (err) {
         alert(JSON.stringify(err));
       }
+      this.router.navigateByUrl('contact');
     });
   }
 }
