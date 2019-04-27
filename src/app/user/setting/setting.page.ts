@@ -52,7 +52,12 @@ export class SettingPage implements OnInit {
   }
 
   upload() {
+    if (!utilService.getUser()) {
+      alert('请登录');
+      return
+    }
     let tsUser = new User();
+    tsUser.setId(utilService.getUser().id);
     tsUser.setIcon(this.user.icon);
     tsUser.setSignature(this.user.signature);
     apiService.userClient.update(tsUser, apiService.metaData, (err: grpcWeb.Error, response: User) => {
