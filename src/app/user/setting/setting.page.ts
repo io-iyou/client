@@ -24,7 +24,8 @@ export class SettingPage implements OnInit {
     const options: CameraOptions = {
       quality: 100,
       correctOrientation: true,
-      sourceType: 0,
+      sourceType: 2,
+      allowEdit:true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
