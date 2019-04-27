@@ -10,7 +10,7 @@ import { utilService } from './service/api.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  username = '登录';
+  user = utilService.getUser();
   public appPages = [
     {
       title: '账号',
@@ -58,12 +58,12 @@ export class AppComponent {
   }
 
   listenForLoginEvents() {
-    this.events.subscribe('user:login', (username) => {
-      this.username = username;
-    });
-    if (utilService.getUser()) {
-      this.username = utilService.getUser().name;
-    }
+    // this.events.subscribe('user:login', (username) => {
+    //   this.username = username;
+    // });
+    // if (utilService.getUser()) {
+    //   this.username = utilService.getUser().name;
+    // }
   }
 
   gotoSetting() {
