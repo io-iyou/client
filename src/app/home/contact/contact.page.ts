@@ -12,6 +12,7 @@ import { apiService, utilService } from '../../service/api.service';
 export class ContactPage implements OnInit {
   users: User.AsObject[] = [];
   groups: Group.AsObject[] = [];
+  isDisplay = false;
 
   constructor(private router: Router) { }
 
@@ -27,7 +28,9 @@ export class ContactPage implements OnInit {
 
     let stream = apiService.userClient.list((new User), apiService.metaData);
     stream.on('data', response => {
-      this.users.push(response.toObject());
+      let user = response.toObject();
+      user['isDisplay'] = false;
+      this.users.push(user);
     });
     stream.on('error', err => {
       alert(JSON.stringify(err));

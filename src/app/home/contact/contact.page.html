@@ -27,7 +27,15 @@
       <ion-avatar slot="start" (click)="gotoSend(user.id)">
         <img src="assets/icon/person.jpeg">
       </ion-avatar>
-      <ion-label>{{user.name}}</ion-label>
+      <ion-label text-wrap>
+        <ion-text (click)="user.isDisplay=!user.isDisplay">
+          {{user.name}}
+        </ion-text>
+        <p *ngIf="user.isDisplay">{{user.telephone}}</p>
+        <ion-text color="secondary" *ngIf="user.isDisplay">
+          <p>{{user.signature}}</p>
+        </ion-text>
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
