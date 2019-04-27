@@ -11,7 +11,7 @@ import { apiService, utilService } from '../../service/api.service';
   styleUrls: ['./setting.page.scss'],
 })
 export class SettingPage implements OnInit {
-  user = (new User).toObject();
+  user = utilService.getUser();
 
   constructor(
     private router: Router,
@@ -56,7 +56,6 @@ export class SettingPage implements OnInit {
         //this.modalController.dismiss();
         this.router.navigateByUrl('home');
       }
-    })
-
+    });
   }
 }
