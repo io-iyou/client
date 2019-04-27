@@ -92,6 +92,8 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../com-sarriaroman-photoviewer/starter-photoviewer.gradle"
+apply from: "../cordova-plugin-telerik-imagepicker/starter-ignorelinterrors.gradle"
+apply from: "../cordova-plugin-telerik-imagepicker/starter-androidtarget.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -268,6 +270,7 @@ dependencies {
     implementation(project(path: ":CordovaLib"))
     compile "com.android.support:support-annotations:27.+"
     compile "com.android.support:support-v4:24.1.1+"
+    compile "com.android.support:appcompat-v7:23+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

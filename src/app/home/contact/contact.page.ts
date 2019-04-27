@@ -12,7 +12,6 @@ import { apiService, utilService } from '../../service/api.service';
 export class ContactPage implements OnInit {
   users: User.AsObject[] = [];
   groups: Group.AsObject[] = [];
-  isDisplay = false;
 
   constructor(private router: Router) { }
 

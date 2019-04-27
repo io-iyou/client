@@ -334,6 +334,14 @@ module.exports = [
     "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
     "pluginId": "cordova-plugin-geolocation",
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-telerik-imagepicker.ImagePicker",
+    "file": "plugins/cordova-plugin-telerik-imagepicker/www/imagepicker.js",
+    "pluginId": "cordova-plugin-telerik-imagepicker",
+    "clobbers": [
+      "plugins.imagePicker"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -349,7 +357,8 @@ module.exports.metadata =
   "cordova-plugin-media-capture": "3.0.2",
   "cordova-plugin-camera": "4.0.3",
   "com-sarriaroman-photoviewer": "1.2.1",
-  "cordova-plugin-geolocation": "4.0.1"
+  "cordova-plugin-geolocation": "4.0.1",
+  "cordova-plugin-telerik-imagepicker": "2.3.2"
 };
 // BOTTOM OF METADATA
 });

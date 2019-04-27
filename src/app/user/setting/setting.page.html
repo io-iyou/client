@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>签名/头像</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <!-- <ion-card-subtitle>{{article.title}}</ion-card-subtitle> -->
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea [(ngModel)]="user.signature" rows="1" placeholder="签名..."></ion-textarea>
+      </ion-item>
+      <ion-item (click)="select()">
+        头像
+        <ion-img [src]="user.icon"></ion-img>
+      </ion-item>
+      <ion-item>
+        <ion-button color="warning" (click)="upload()">
+          更新
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

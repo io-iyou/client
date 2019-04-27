@@ -64,4 +64,8 @@ export class AppComponent {
       this.username = utilService.getUser().name;
     }
   }
+
+  gotoSetting() {
+    this.router.navigateByUrl("setting");
+  }
 }
