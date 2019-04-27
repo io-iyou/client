@@ -29,7 +29,7 @@ export class GroupPage implements OnInit {
 
   add() {
     let tsGroup = new Group();
-    tsGroup.setName('group-' + new Date());
+    tsGroup.setName('group-' + (new Date()).toTimeString());
     for (let j = 0; j < this.users.length; j++) {
       let user = this.users[j];
       if (user['isChecked']) {
