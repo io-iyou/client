@@ -25,7 +25,8 @@
 
     <ion-item *ngFor="let user of users">
       <ion-avatar slot="start" (click)="gotoSend(user.id)">
-        <img src="assets/icon/person.jpeg">
+        <img *ngIf="user.icon" [src]="user.icon">
+        <img *ngIf="!user.icon" src="assets/icon/person.jpeg">
       </ion-avatar>
       <ion-label text-wrap>
         <ion-text (click)="user.isDisplay=!user.isDisplay">

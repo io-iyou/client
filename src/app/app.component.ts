@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
-import { Platform, Events } from '@ionic/angular';
+import { Component, Injector } from '@angular/core';
+import { Platform, MenuController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { utilService } from './service/api.service';
@@ -37,6 +37,7 @@ export class AppComponent {
   constructor(
     private events: Events,
     private router: Router,
+    private injector: Injector,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
@@ -67,5 +68,6 @@ export class AppComponent {
 
   gotoSetting() {
     this.router.navigateByUrl("setting");
+    this.injector.get(MenuController).close();
   }
 }
