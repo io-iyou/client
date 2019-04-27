@@ -1,4 +1,5 @@
 import * as grpcWeb from 'grpc-web';
+import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { User } from '../../../sdk/user_pb';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,7 @@ export class SettingPage implements OnInit {
 
   constructor(
     private router: Router,
+    private events: Events,
     private camera: Camera) { }
 
   ngOnInit() {
@@ -54,6 +56,9 @@ export class SettingPage implements OnInit {
       } else {
         //alert(JSON.stringify(this.article));
         //this.modalController.dismiss();
+        // refresh local storage
+        utilService.setUser(this.user);
+        this.events.publish('user:login', response.getName());
         this.router.navigateByUrl('home');
       }
     });
