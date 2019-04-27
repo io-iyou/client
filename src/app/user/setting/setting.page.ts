@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { User } from '../../../sdk/user_pb';
 import { Component, OnInit } from '@angular/core';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { apiService, utilService } from '../../service/api.service';
 
 @Component({
@@ -15,40 +15,26 @@ export class SettingPage implements OnInit {
 
   constructor(
     private router: Router,
-    private imagePicker: ImagePicker) { }
+    private camera: Camera) { }
 
   ngOnInit() {
   }
 
   select() {
-    let options = {
-      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
-      // selection of a single image, the plugin will return it.
-      maximumImagesCount: 1,
-
-      // max width and height to allow the images to be.  Will keep aspect
-      // ratio no matter what.  So if both are 800, the returned image
-      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
-      // 800 and height 0 the image will be 800 pixels wide if the source
-      // is at least that wide.
-      width: 100,
-      height: 100,
-
-      // quality of resized image, defaults to 100
-      quality: 30,// (0-100),
-
-      // output type, defaults to FILE_URIs.
-      // available options are 
-      // window.imagePicker.OutputType.FILE_URI (0) or 
-      // window.imagePicker.OutputType.BASE64_STRING (1)
-      outputType: 1
-    };
-    this.imagePicker.getPictures(options).then((results) => {
-      for (var i = 0; i < results.length; i++) {
-        console.log('Image URI: ' + results[i]);
-        this.user.icon = results[i];
-      }
-    }, (err) => { });
+    const options: CameraOptions = {
+      quality: 100,
+      correctOrientation: true,
+      sourceType: 0,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.user.icon = base64Image;
+    });
   }
 
   upload() {

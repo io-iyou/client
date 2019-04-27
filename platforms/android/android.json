@@ -47,10 +47,6 @@
             {
               "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
               "count": 1
-            },
-            {
-              "xml": "<feature name=\"ImagePicker\"><param name=\"android-package\" value=\"com.synconset.ImagePicker\" /></feature>",
-              "count": 1
             }
           ]
         }
@@ -97,10 +93,6 @@
             {
               "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
               "count": 1
-            },
-            {
-              "xml": "<activity android:label=\"@string/multi_app_name\" android:name=\"com.synconset.MultiImageChooserActivity\" android:theme=\"@style/Theme.AppCompat.Light\"></activity>",
-              "count": 1
             }
           ],
           "/manifest": [
@@ -110,7 +102,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 2
+              "count": 1
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
@@ -184,9 +176,6 @@
       "PACKAGE_NAME": "io.iyou.starter"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "io.iyou.starter"
-    },
-    "cordova-plugin-telerik-imagepicker": {
       "PACKAGE_NAME": "io.iyou.starter"
     }
   },
@@ -526,14 +515,6 @@
       "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
       "pluginId": "cordova-plugin-geolocation",
       "runs": true
-    },
-    {
-      "id": "cordova-plugin-telerik-imagepicker.ImagePicker",
-      "file": "plugins/cordova-plugin-telerik-imagepicker/www/imagepicker.js",
-      "pluginId": "cordova-plugin-telerik-imagepicker",
-      "clobbers": [
-        "plugins.imagePicker"
-      ]
     }
   ],
   "plugin_metadata": {
@@ -547,7 +528,6 @@
     "cordova-plugin-media-capture": "3.0.2",
     "cordova-plugin-camera": "4.0.3",
     "com-sarriaroman-photoviewer": "1.2.1",
-    "cordova-plugin-geolocation": "4.0.1",
-    "cordova-plugin-telerik-imagepicker": "2.3.2"
+    "cordova-plugin-geolocation": "4.0.1"
   }
 }

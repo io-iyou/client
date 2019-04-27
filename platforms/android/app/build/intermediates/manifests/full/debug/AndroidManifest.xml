@@ -60,10 +60,6 @@
         <activity
             android:name="com.sarriaroman.PhotoViewer.PhotoActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name="com.synconset.MultiImageChooserActivity"
-            android:label="@string/multi_app_name"
-            android:theme="@style/Theme.AppCompat.Light" />
     </application>
 
 </manifest>

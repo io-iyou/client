@@ -10,7 +10,6 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticleComponent } from './home/record/article/article.component'
@@ -31,7 +30,6 @@ import { ArticleComponent } from './home/record/article/article.component'
     Camera, File,
     PhotoViewer,
     Geolocation,
-    ImagePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

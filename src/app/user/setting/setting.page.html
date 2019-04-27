@@ -16,7 +16,7 @@
       </ion-item>
       <ion-item (click)="select()">
         头像
-        <ion-img [src]="user.icon"></ion-img>
+        <ion-img *ngIf="user.icon" [src]="user.icon"></ion-img>
       </ion-item>
       <ion-item>
         <ion-button color="warning" (click)="upload()">

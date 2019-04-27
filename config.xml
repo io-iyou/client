@@ -87,6 +87,5 @@
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="com-sarriaroman-photoviewer" spec="1.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
-    <plugin name="cordova-plugin-telerik-imagepicker" spec="2.3.2" />
     <engine name="android" spec="7.1.4" />
 </widget>
