@@ -16,15 +16,22 @@ export class ContactPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    let stream1 = apiService.groupClient.list((new Group), apiService.metaData);
-    stream1.on('data', response => {
+    this.loadGroups();
+    this.loadUsers();
+  }
+
+  loadGroups() {
+    let stream = apiService.groupClient.list((new Group), apiService.metaData);
+    stream.on('data', response => {
       this.groups.push(response.toObject());
     });
-    stream1.on('error', err => {
+    stream.on('error', err => {
       alert(JSON.stringify(err));
-      //this.load();
+      this.loadGroups();
     });
+  }
 
+  loadUsers() {
     let stream = apiService.userClient.list((new User), apiService.metaData);
     stream.on('data', response => {
       let user = response.toObject();
@@ -33,7 +40,7 @@ export class ContactPage implements OnInit {
     });
     stream.on('error', err => {
       alert(JSON.stringify(err));
-      //this.load();
+      this.loadUsers();
     });
   }
 
