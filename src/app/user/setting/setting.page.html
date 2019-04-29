@@ -21,9 +21,10 @@
       <ion-card-title></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item (click)="select()" style="text-align:center">
+      <ion-item (click)="select()" style="text-align:center;border-radius:50%">
         <!-- <ion-label>头像:</ion-label> -->
-        <ion-img *ngIf="user.icon" [src]="user.icon" style="width:200px;height:200px;border-radius:50%"></ion-img>
+        <ion-img *ngIf="user.icon" [src]="user.icon" style="display:block;width:200px;height:200px;border-radius:50%">
+        </ion-img>
       </ion-item>
       <ion-item>
         <ion-avatar>
