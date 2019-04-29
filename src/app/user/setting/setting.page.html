@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar color="warning">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>个人信息</ion-title>
+    <ion-title>账号信息</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="upload()">
         保存
@@ -19,9 +21,9 @@
       <ion-card-title></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item (click)="select()" text-center>
+      <ion-item (click)="select()" style="text-align:center">
         <!-- <ion-label>头像:</ion-label> -->
-        <ion-img *ngIf="user.icon" [src]="user.icon" style="width:100px;height:100px;border-radius:50%"></ion-img>
+        <ion-img *ngIf="user.icon" [src]="user.icon" style="width:200px;height:200px;border-radius:50%"></ion-img>
       </ion-item>
       <ion-item>
         <ion-avatar>
@@ -29,7 +31,7 @@
         </ion-avatar>
         <div>
           <ion-label>签名</ion-label>
-          <ion-input type="text" [(ngModel)]="user.signature"></ion-input>
+          <ion-input [(ngModel)]="user.signature"></ion-input>
         </div>
       </ion-item>
       <ion-item>
