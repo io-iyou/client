@@ -14,12 +14,12 @@ export class AppComponent {
   public appPages = [
     {
       title: '账号',
-      url: '/home',
+      url: '/setting',
       icon: 'key'
     },
     {
       title: '对话',
-      url: '/list',
+      url: '/home',
       icon: 'list-box'
     },
     {
@@ -63,8 +63,8 @@ export class AppComponent {
     });
   }
 
-  gotoSetting() {
-    this.router.navigateByUrl("setting");
-    this.injector.get(MenuController).close();
-  }
+  // gotoSetting() {
+  //   this.router.navigateByUrl("setting");
+  //   this.injector.get(MenuController).close();
+  // }
 }
